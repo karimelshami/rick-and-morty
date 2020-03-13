@@ -1,0 +1,7 @@
+const commonActionTypes = {
+    GET_ALL_WHATEVER: 'GET_ALL_WHATEVER',
+    GET_ALL_WHATEVER_SUCCESS: 'GET_ALL_WHATEVER_SUCCESS',
+    GET_ALL_WHATEVER_FAIL: 'GET_ALL_WHATEVER_FAIL',
+}
+
+export default commonActionTypes;
