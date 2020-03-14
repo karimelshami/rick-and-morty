@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container } from './HomeContainer.style'
+import { Container, CardsWrapper } from './HomeContainer.style'
 import InputField from 'modules/common/components/InputField'
 import Card from 'modules/common/components/Card'
 import Text from 'modules/common/components/Text'
@@ -19,8 +19,6 @@ const HomeContainer = () => {
     console.log(allCharacters)
   }, [])
 
-
-
   const handleInputChange = () => {
     console.log('--------------')
   }
@@ -31,7 +29,13 @@ const HomeContainer = () => {
         placeholder="search by your favourite charachter"
         handleChange={() => handleInputChange()}
       />
-      {/* <Card />  */}
+      <CardsWrapper>
+        {allCharacters &&
+          allCharacters.results &&
+          allCharacters.results.map(character => {
+            return <Card img={character.image} title={character.name} />
+          })}
+      </CardsWrapper>
     </Container>
   )
 }

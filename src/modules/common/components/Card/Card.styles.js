@@ -5,7 +5,7 @@ export const Button = styled.div`
   border-color: #edecec;
   text-align: left;
   text-transform: uppercase;
-  color: ${props => props.theme.primary};
+  color: ${props => props.theme.main};
   font-weight: 700;
   padding: 10px;
   border-radius: 5px;
@@ -20,7 +20,7 @@ export const CardTitle = styled.span`
   font-weight: 700;
   display: block;
   font-size: 18px;
-  color: ${props => props.theme.primary};
+  color: ${props => props.theme.main};
   ${props => props.theme.media.phone`
   font-size:15px;
   `}
@@ -30,7 +30,7 @@ export const CardTitleAndImageWrapper = styled.div`
 `
 export const CardCaption = styled.span`
   font-size: 14px;
-  color: ${props => props.theme.primary};
+  color: ${props => props.theme.main};
   font-weight: 400;
   font-size:20px;
   font-weight:700
@@ -57,6 +57,8 @@ export const Card = styled.div`
   width: 23%;
   margin: 1%;
   margin-bottom: 20px;
+  display: inline-block;
+
   ${props => props.theme.media.tablet`
   width: 45%;
   `}

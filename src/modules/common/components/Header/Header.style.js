@@ -1,11 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-display:flex
-padding-right: 10%;
-padding-left: 5%;
-margin-right: auto;
-margin-left: auto;
+display:flex;
 margin-top : 0;
 background-color :${props =>props.theme.main};
 
