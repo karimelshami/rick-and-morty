@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { useHistory } from 'react-router'
+import HomeContainer from 'modules/common/containers/HomeContainer'
 import Cookies from 'js-cookie'
 
-const HelloWorld = () => {
-  return <div>Hello World</div>
-}
 const Routes = () => {
   let history = useHistory()
   useEffect(() => {
@@ -15,7 +13,7 @@ const Routes = () => {
 
   return (
     <Switch>
-      <Route exact path="/" component={HelloWorld} />
+      <Route exact path="/" component={HomeContainer} />
     </Switch>
   )
 }

@@ -27,12 +27,7 @@ media.desktop = (...args) => css`
 export default {
   sizes,
   media,
-  primary: '#0070cd', //  Blue
-  secondry: '#3E8DDD', // Light Blue
-  darkPrimary: '#024d8c', // Dark Blue
-  textPlaceholderColor: '#bbb', // Gray
-  defaultText: '#747470', // Dark Gray,
-  textGrey: '#808184',
-  direction: 'ltr',
-  preventBodyScrolling: false
+  main : '#000000', //black
+  primary: '#ffffff', //  White
+  secondary: '#66bdcf' // light blue
 }

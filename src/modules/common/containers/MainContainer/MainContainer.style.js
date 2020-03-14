@@ -13,7 +13,7 @@ const font = () => css`
 export const GlobalStyle = createGlobalStyle`
   ${font()}
     body {
-      background-color: #ffffff;
+      background-color: #000;
     }
     
 `
