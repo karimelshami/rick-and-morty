@@ -1,7 +1,5 @@
 import { api, Urls } from 'utils'
 
-const { portalCommon } = Urls;
-
-export function getWhatever() {
-    return api.get(portalCommon.getWhatever)
+export function getAllCharacters() {
+  return api.get(Urls.getAllCharacters)
 }

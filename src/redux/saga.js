@@ -1,6 +1,7 @@
 import { all, fork } from 'redux-saga/effects'
+import { commonSagas } from 'modules/common'
 
-const sagas = []
+const sagas = [commonSagas]
 
 export default function* rootSaga() {
   // eslint-disable-next-line array-callback-return

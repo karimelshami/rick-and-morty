@@ -1,17 +1,17 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import { commonActions, commonActionTypes, commonApi } from 'modules/common'
 
-function* getWhateverSaga() {
+function* getAllCharactersSaga() {
   try {
-    const response = yield call(commonApi.getWhatever)
-    yield put(commonActions.getWhateverSuccess(response.data))
+    const response = yield call(commonApi.getAllCharacters)
+    yield put(commonActions.getAllCharactersSuccess(response.data))
   } catch (error) {
-    yield put(commonActions.getWhateverFail())
+    yield put(commonActions.getAllCharactersFail())
   }
 }
 
 function* commonSagas() {
-  yield takeLatest(commonActionTypes.GET_ALL_WHATEVER, getWhateverSaga)
+  yield takeLatest(commonActionTypes.GET_ALL_CHARACTERS, getAllCharactersSaga)
 }
 
 export default commonSagas
