@@ -4,37 +4,32 @@ import PropTypes from 'prop-types'
 
 const Text = props => {
   const {
-    size,
-    color,
-    fontWeight,
     margin,
-    cursor,
-    letterSpacing,
-    fontStyle,
-    textAlign
+    textAlign,
+    secondaryText,
+    primaryText,
+    text,
+    mainText
   } = props
   return (
     <CustomText
-      size={size}
-      color={color}
-      fontWeight={fontWeight}
       margin={margin}
-      pointer={cursor}
-      letterSpacing={letterSpacing}
-      fontStyle={fontStyle}
       textAlign={textAlign}
-    />
+      primaryText={primaryText}
+      secondaryText={secondaryText}
+      mainText={mainText}
+    >
+      {text}
+    </CustomText>
   )
 }
 
 Text.propTypes = {
-  size: PropTypes.string,
-  color: PropTypes.string,
-  fontWeight: PropTypes.string,
+  text: PropTypes.string,
   margin: PropTypes.string,
-  cursor: PropTypes.string,
-  letterSpacing: PropTypes.string,
-  fontStyle: PropTypes.string,
-  textAlign: PropTypes.string
+  textAlign: PropTypes.string,
+  primaryText: PropTypes.bool,
+  secondaryText: PropTypes.bool,
+  mainText: PropTypes.bool
 }
 export default Text

@@ -1,32 +1,37 @@
 import React from 'react'
+import Text from 'modules/common/components/Text'
 import {
-  CardTitle,
-  CardCaption,
   Img,
   Button,
   Card,
   CardContent,
   CardTitleAndImageWrapper,
-  CaptionWrapper
+  StatusImage
 } from './Card.styles'
 const CustomCard = props => {
-  const { title, caption, buttonText, img } = props
+  const { buttonText, img, name, status, origin, location, species } = props
   return (
     <Card>
       <CardTitleAndImageWrapper>
         <Img src={img} />
-        <CardTitle>{title}</CardTitle>
       </CardTitleAndImageWrapper>
       <CardContent>
-        <CaptionWrapper>
-          <CardCaption>{caption}</CardCaption>
-        </CaptionWrapper>
+        <Text mainText text={`${name} (${species} ) From`} />
+        <Text primaryText text={` ${origin}  `} />
+        <Text primaryText text={`Located now in ${location}`} />
+        <StatusImage src={status} alt="" />
         <Button>{buttonText}</Button>
       </CardContent>
     </Card>
   )
 }
 export default CustomCard
+//<Name>Name :
+//<Status>Status :
+//<Species
+//Gender :
+//Origin :
+//Location
 
 // {
 //   "id": 1,
