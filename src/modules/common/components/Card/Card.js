@@ -18,7 +18,9 @@ const CustomCard = props => {
     origin,
     location,
     species,
-    handleClick
+    handleClick,
+    statusImg,
+    gender
   } = props
   return (
     <Card>
@@ -29,7 +31,8 @@ const CustomCard = props => {
         <Text mainText text={`${name} (${species} ) From`} />
         <Text primaryText text={` ${origin}  `} />
         <Text primaryText text={`Located now in ${location}`} />
-        <StatusImage src={status} alt="" />
+        <Text primaryText text={`${gender} state is ${status}`} />
+        <StatusImage src={statusImg} alt="" />
         <Button
           handleClick={() => handleClick()}
           extendStyle={extendButtonStyle}

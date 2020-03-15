@@ -12,6 +12,7 @@ export const CustomText = styled.span`
         font-size: 18px;
         color: ${props.theme.main};
         font-weight: 700;
+        font-style:italic;
         display:block;
         ${props.theme.media.tablet`
         font-size:16px;

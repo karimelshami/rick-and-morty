@@ -6,3 +6,9 @@ export const characterStatus = {
   Dead: Dead,
   unknown: Unknown
 }
+export const characterGender = {
+  Female: 'Her',
+  Male: 'His',
+  Genderless: "It's",
+  unknown: "It's"
+}

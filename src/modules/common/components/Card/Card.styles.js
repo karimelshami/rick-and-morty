@@ -1,9 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 export const extendButtonStyle = css`
   width: 70%;
   position: absolute;
   bottom: 0;
+  right:0;
+  left:0;
+  text-align: center;
+  line-height: 40px;
+  margin: 10px auto;
+
 `
 
 export const CardTitleAndImageWrapper = styled.div`
@@ -28,6 +34,8 @@ export const Card = styled.div`
   `}
   ${props => props.theme.media.phone`
   width: 100%;
+  height: unset;
+
   display: block;
   `}
 `

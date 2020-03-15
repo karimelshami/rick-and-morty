@@ -1,14 +1,23 @@
 import styled, { css } from 'styled-components'
 
-export const extendButtonStyle = css`
-width:30%;
-text-align:center;
-padding:10px;
-line-height:40px;
+export const extendSearchButtonStyle = css`
+  width: 30%;
+  text-align: center;
+  line-height: 40px;
+  padding: 10px;
+`
+export const extendShowMoreButtonStyle = css`
+  margin: 0 auto;
+  width:30%;
+  text-align: center;
+  line-height: 40px;
+`
+export const ShowMore = styled.div`
+  width: 100%;
 `
 export const extendInputFieldStyle = css`
-width:60%;
-display:flex;
+  width: 60%;
+  display: flex;
 `
 
 export const Container = styled.span``
@@ -27,5 +36,5 @@ export const CardsWrapper = styled.div`
 `
 export const Searchbar = styled.div`
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
 `

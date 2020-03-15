@@ -4,8 +4,10 @@ import {
   Container,
   CardsWrapper,
   Searchbar,
-  extendButtonStyle,
-  extendInputFieldStyle
+  extendSearchButtonStyle,
+  extendInputFieldStyle,
+  ShowMore,
+  extendShowMoreButtonStyle
 } from './HomeContainer.style'
 import InputField from 'modules/common/components/InputField'
 import Card from 'modules/common/components/Card'
@@ -14,7 +16,7 @@ import Button from 'modules/common/components/Button'
 import Loader from 'modules/common/components/Loader'
 import { commonActions } from 'modules/common'
 import { constants } from 'utils'
-import { characterStatus } from './HomeContainer.constants'
+import { characterStatus, characterGender } from './HomeContainer.constants'
 const { status } = constants
 
 const HomeContainer = () => {
@@ -49,10 +51,21 @@ const HomeContainer = () => {
         />
         <Button
           handleClick={() => search()}
-          extendStyle={extendButtonStyle}
+          extendStyle={extendSearchButtonStyle}
           text={'Search'}
         />
       </Searchbar>
+    )
+  }
+  const renderShowMore = () => {
+    return (
+      <ShowMore>
+        <Button
+          handleClick={() => search()}
+          extendStyle={extendShowMoreButtonStyle}
+          text={'Show more'}
+        />
+      </ShowMore>
     )
   }
 
@@ -66,12 +79,14 @@ const HomeContainer = () => {
               return (
                 <Card
                   img={character.image}
-                  status={characterStatus[character.status]}
+                  statusImg={characterStatus[character.status]}
+                  status={character.status}
+                  gender={characterGender[character.gender]}
                   species={character.species}
                   location={character.location.name}
                   origin={character.origin.name}
                   name={character.name}
-                  buttonText={`View ${character.name} Episodes`}
+                  buttonText={`View Episodes`}
                   handleClick={() => viewEpisodes()}
                 />
               )
@@ -89,6 +104,7 @@ const HomeContainer = () => {
         <>
           {renderSearchBar()}
           {renderAllCharactersCards()}
+          {renderShowMore()}
         </>
       )}
     </Container>
