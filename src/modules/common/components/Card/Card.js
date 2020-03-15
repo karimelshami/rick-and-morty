@@ -7,7 +7,8 @@ import {
   CardContent,
   CardTitleAndImageWrapper,
   StatusImage,
-  extendButtonStyle
+  extendButtonStyle,
+  extendTextStyle
 } from './Card.styles'
 const CustomCard = props => {
   const {
@@ -28,17 +29,33 @@ const CustomCard = props => {
         <Img src={img} />
       </CardTitleAndImageWrapper>
       <CardContent>
-        <Text mainText text={`${name} (${species} ) From`} />
-        <Text primaryText text={` ${origin}  `} />
-        <Text primaryText text={`Located now in ${location}`} />
-        <Text primaryText text={`${gender} state is ${status}`} />
-        <StatusImage src={statusImg} alt="" />
-        <Button
-          handleClick={() => handleClick()}
-          extendStyle={extendButtonStyle}
-          text={buttonText}
+        <Text
+          extendStyle={extendTextStyle}
+          mainText
+          text={`${name} (${species} ) From`}
         />
+        <Text
+          extendStyle={extendTextStyle}
+          primaryText
+          text={` ${origin}  `}
+        />
+        <Text
+          extendStyle={extendTextStyle}
+          primaryText
+          text={`Located now in ${location}`}
+        />
+        <Text
+          extendStyle={extendTextStyle}
+          primaryText
+          text={`${gender} state is ${status}`}
+        />
+        <StatusImage src={statusImg} alt="" />
       </CardContent>
+      <Button
+        handleClick={() => handleClick()}
+        extendStyle={extendButtonStyle}
+        text={buttonText}
+      />
     </Card>
   )
 }

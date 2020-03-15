@@ -11,7 +11,8 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...state,
         ...{
           allCharacters: {
-            status: status.FETCHING
+            status: status.FETCHING,
+            results: [...state.allCharacters.results],
           }
         }
       }
@@ -21,7 +22,8 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...{
           allCharacters: {
             status: status.SUCCESS,
-            ...payload
+            ...payload,
+            results: [...state.allCharacters.results, ...payload.results],
           }
         }
       }

@@ -9,7 +9,8 @@ const Text = props => {
     secondaryText,
     primaryText,
     text,
-    mainText
+    mainText,
+    extendStyle
   } = props
   return (
     <CustomText
@@ -18,6 +19,7 @@ const Text = props => {
       primaryText={primaryText}
       secondaryText={secondaryText}
       mainText={mainText}
+      extendStyle={extendStyle}
     >
       {text}
     </CustomText>
@@ -30,6 +32,7 @@ Text.propTypes = {
   textAlign: PropTypes.string,
   primaryText: PropTypes.bool,
   secondaryText: PropTypes.bool,
-  mainText: PropTypes.bool
+  mainText: PropTypes.bool,
+  extendStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 }
 export default Text

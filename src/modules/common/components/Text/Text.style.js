@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const CustomText = styled.span`
-  padding:5px;
+  padding: 5px;
+  ${props => props.extendStyle || ''};
   ${props =>
     props &&
     `
