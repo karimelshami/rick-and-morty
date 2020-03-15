@@ -1,5 +1,5 @@
 import { api, Urls } from 'utils'
 
-export function getAllCharacters() {
-  return api.get(Urls.getAllCharacters)
+export function getAllCharacters(payload) {
+  return api.get(`${Urls.getAllCharacters}?page=${payload.payload}`)
 }

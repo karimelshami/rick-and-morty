@@ -18,6 +18,8 @@ export const ShowMore = styled.div`
 export const extendInputFieldStyle = css`
   width: 60%;
   display: flex;
+  margin : 0 10px;
+  border-bottom : 2px solid ${props=>props.theme.primary}!important;
 `
 
 export const Container = styled.span``

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Container,
@@ -24,13 +24,14 @@ const HomeContainer = () => {
     allCharacters: state.common.allCharacters,
     showLoader: state.common.allCharacters.status === status.FETCHING
   }))
+  const [page, setPage] = useState(1)
   const dispatch = useDispatch()
   const getAllCharacters = () => {
-    dispatch(commonActions.getAllCharacters())
+    dispatch(commonActions.getAllCharacters(page))
   }
   useEffect(() => {
-    getAllCharacters()
-  }, [])
+    getAllCharacters(page)
+  }, [page])
 
   const handleInputChange = () => {
     console.log('--------------')
@@ -41,11 +42,14 @@ const HomeContainer = () => {
   const viewEpisodes = () => {
     console.log('view Episodes')
   }
+
+  const showMore = () => setPage(page + 1)
+
   const renderSearchBar = () => {
     return (
       <Searchbar>
         <InputField
-          placeholder="search by your favourite charachter"
+          placeholder="Search by your favourite charachter"
           handleChange={() => handleInputChange()}
           extendStyle={extendInputFieldStyle}
         />
@@ -61,7 +65,7 @@ const HomeContainer = () => {
     return (
       <ShowMore>
         <Button
-          handleClick={() => search()}
+          handleClick={() => showMore()}
           extendStyle={extendShowMoreButtonStyle}
           text={'Show more'}
         />
@@ -74,7 +78,6 @@ const HomeContainer = () => {
       return (
         <CardsWrapper>
           {allCharacters &&
-            allCharacters.results &&
             allCharacters.results.map(character => {
               return (
                 <Card

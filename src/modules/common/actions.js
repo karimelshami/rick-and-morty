@@ -1,7 +1,8 @@
 import commonActionTypes from './action-types'
-export function getAllCharacters() {
+export function getAllCharacters(value) {
   return {
     type: commonActionTypes.GET_ALL_CHARACTERS,
+    payload: value
   }
 }
 

@@ -1,9 +1,9 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import { commonActions, commonActionTypes, commonApi } from 'modules/common'
 
-function* getAllCharactersSaga() {
+function* getAllCharactersSaga(payload) {
   try {
-    const response = yield call(commonApi.getAllCharacters)
+    const response = yield call(commonApi.getAllCharacters, payload)
     yield put(commonActions.getAllCharactersSuccess(response.data))
   } catch (error) {
     yield put(commonActions.getAllCharactersFail())
