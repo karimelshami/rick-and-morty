@@ -13,7 +13,8 @@ const InputField = props => {
     placeholderFontSize,
     placeholderFontStyle,
     placeholderPadding,
-    height
+    height,
+    extendStyle
   } = props
   return (
     <Input
@@ -27,24 +28,29 @@ const InputField = props => {
       placeholderPadding={placeholderPadding}
       margin={margin}
       height={height}
+      extendStyle={extendStyle}
     />
   )
 }
 
 InputField.propTypes = {
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  fontSize: PropTypes.string
+  fontSize: PropTypes.string,
+  fontStyle: PropTypes.string,
+  placeholderFontStyle: PropTypes.string,
+  placeholderPadding: PropTypes.string,
+  height: PropTypes.string,
+  extendStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 }
 InputField.defaultProps = {
   fontSize: '18px',
   type: 'text',
-  handleChange: console.log('onChange Handler must be declared'),
   fontStyle: 'italic ',
   placeholderFontStyle: 'italic',
   placeholderFontSize: '18px',
   placeholderPadding: '15px',
-  height :"50px"
+  height: '50px'
 }
 export default InputField

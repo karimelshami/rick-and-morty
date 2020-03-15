@@ -1,24 +1,9 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components';
 
-export const Button = styled.div`
-  background-color: #edecec;
-  border-color: #edecec;
-  text-align: left;
-  text-transform: uppercase;
-  height: 40px;
-  width:70%;
-  margin:auto;
-  color: ${props => props.theme.main};
-  font-weight: 700;
-  padding: 10px;
-  border-radius: 5px;
+export const extendButtonStyle = css`
+  width: 70%;
   position: absolute;
   bottom: 0;
-  &:hover {
-    cursor: pointer;
-    background-color: ${props => props.theme.primary};
-    color: #fff;
-  }
 `
 
 export const CardTitleAndImageWrapper = styled.div`
@@ -52,7 +37,6 @@ export const CardContent = styled.div`
   display: block;
   height: 280px;
   position: relative;
-
 `
 export const StatusImage = styled.img`
   height: 60px;

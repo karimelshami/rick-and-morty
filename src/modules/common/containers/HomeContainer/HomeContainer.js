@@ -1,14 +1,22 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, CardsWrapper } from './HomeContainer.style'
+import {
+  Container,
+  CardsWrapper,
+  Searchbar,
+  extendButtonStyle,
+  extendInputFieldStyle
+} from './HomeContainer.style'
 import InputField from 'modules/common/components/InputField'
 import Card from 'modules/common/components/Card'
 import Text from 'modules/common/components/Text'
+import Button from 'modules/common/components/Button'
 import Loader from 'modules/common/components/Loader'
 import { commonActions } from 'modules/common'
 import { constants } from 'utils'
 import { characterStatus } from './HomeContainer.constants'
 const { status } = constants
+
 const HomeContainer = () => {
   const { allCharacters, showLoader } = useSelector(state => ({
     allCharacters: state.common.allCharacters,
@@ -24,6 +32,28 @@ const HomeContainer = () => {
 
   const handleInputChange = () => {
     console.log('--------------')
+  }
+  const search = () => {
+    console.log('search')
+  }
+  const viewEpisodes = () => {
+    console.log('view Episodes')
+  }
+  const renderSearchBar = () => {
+    return (
+      <Searchbar>
+        <InputField
+          placeholder="search by your favourite charachter"
+          handleChange={() => handleInputChange()}
+          extendStyle={extendInputFieldStyle}
+        />
+        <Button
+          handleClick={() => search()}
+          extendStyle={extendButtonStyle}
+          text={'Search'}
+        />
+      </Searchbar>
+    )
   }
 
   const renderAllCharactersCards = () => {
@@ -42,6 +72,7 @@ const HomeContainer = () => {
                   origin={character.origin.name}
                   name={character.name}
                   buttonText={`View ${character.name} Episodes`}
+                  handleClick={() => viewEpisodes()}
                 />
               )
             })}
@@ -56,10 +87,7 @@ const HomeContainer = () => {
         <Loader />
       ) : (
         <>
-          <InputField
-            placeholder="search by your favourite charachter"
-            handleChange={() => handleInputChange()}
-          />
+          {renderSearchBar()}
           {renderAllCharactersCards()}
         </>
       )}

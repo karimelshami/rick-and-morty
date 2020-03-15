@@ -1,15 +1,25 @@
 import React from 'react'
 import Text from 'modules/common/components/Text'
+import Button from 'modules/common/components/Button'
 import {
   Img,
-  Button,
   Card,
   CardContent,
   CardTitleAndImageWrapper,
-  StatusImage
+  StatusImage,
+  extendButtonStyle
 } from './Card.styles'
 const CustomCard = props => {
-  const { buttonText, img, name, status, origin, location, species } = props
+  const {
+    buttonText,
+    img,
+    name,
+    status,
+    origin,
+    location,
+    species,
+    handleClick
+  } = props
   return (
     <Card>
       <CardTitleAndImageWrapper>
@@ -20,11 +30,16 @@ const CustomCard = props => {
         <Text primaryText text={` ${origin}  `} />
         <Text primaryText text={`Located now in ${location}`} />
         <StatusImage src={status} alt="" />
-        <Button>{buttonText}</Button>
+        <Button
+          handleClick={() => handleClick()}
+          extendStyle={extendButtonStyle}
+          text={buttonText}
+        />
       </CardContent>
     </Card>
   )
 }
+//TODO: PROPTYPES
 export default CustomCard
 //<Name>Name :
 //<Status>Status :
