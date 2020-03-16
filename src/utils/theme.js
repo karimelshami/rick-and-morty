@@ -27,7 +27,7 @@ media.desktop = (...args) => css`
 export default {
   sizes,
   media,
-  main : '#141414', //grey
+  main : '#141414', //dark grey
   primary: '#62cd1e', //  light green 
-  secondary: '#ffffff' // White
+  secondary: '#edecec' // light grey
 }

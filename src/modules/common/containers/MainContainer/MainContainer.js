@@ -7,6 +7,7 @@ import Header from 'modules/common/components/Header'
 import Routes from 'routes'
 import Logo from 'assets/Rick_and_Morty_logo.png'
 import { store } from 'redux/store'
+import { headerItems } from './MainContainer.constants'
 import Theme from 'utils/theme'
 
 function MainContainer() {
@@ -16,7 +17,7 @@ function MainContainer() {
         <ThemeProvider theme={Theme}>
           <AppContainer>
             <GlobalStyle />
-            <Header img={Logo} />
+            <Header listItems={headerItems} img={Logo} />
             <Routes />
           </AppContainer>
         </ThemeProvider>

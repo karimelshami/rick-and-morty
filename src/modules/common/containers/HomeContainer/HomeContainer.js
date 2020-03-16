@@ -43,6 +43,9 @@ const HomeContainer = () => {
   }))
   const [isSearching, setIsSearching] = useState(false)
 
+  useEffect(() => {
+    getAllCharacters(1)
+  }, [])
   const dispatch = useDispatch()
 
   const getAllCharacters = page => {
@@ -52,9 +55,6 @@ const HomeContainer = () => {
     }
     dispatch(commonActions.getAllCharacters(page))
   }
-  useEffect(() => {
-    getAllCharacters(1)
-  }, [])
 
   const handleInputChange = value =>
     dispatch(commonActions.setCharacterName(value))

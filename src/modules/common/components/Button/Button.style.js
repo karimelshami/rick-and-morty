@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const CustomButton = styled.div`
   ${props => props.extendStyle || ''};
-  background-color: #edecec;
-  border-color: #edecec;
+  background-color: ${props => props.theme.secondary};
+  border-color: ${props => props.theme.secondary};
   text-transform: uppercase;
   cursor: pointer;
   height: 40px;
@@ -16,7 +16,7 @@ export const CustomButton = styled.div`
     color: #fff;
   }
 `
-export const Img =styled.img`
-height:40px;
-float:right;
+export const Img = styled.img`
+  height: 40px;
+  float: right;
 `
