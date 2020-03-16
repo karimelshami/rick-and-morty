@@ -41,7 +41,8 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...state,
         ...{
           characters: {
-            status: status.FETCHING
+            status: status.FETCHING,
+            results: [...state.characters.results]
           }
         }
       }
@@ -51,7 +52,8 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...{
           characters: {
             status: status.SUCCESS,
-            ...payload
+            ...payload,
+            results: [...state.characters.results, ...payload.results]
           }
         }
       }
@@ -62,6 +64,31 @@ export function commonReducer(state = initialState, { payload, type }) {
           characters: {
             status: status.FAIL
           }
+        }
+      }
+    case commonActionTypes.CLEAR_ALL_CHARACTERS:
+      return {
+        ...state,
+        ...{
+          characters: {
+            status: 'Characters state has been cleared',
+            info: {},
+            results: []
+          }
+        }
+      }
+    case commonActionTypes.SET_PAGE:
+      return {
+        ...state,
+        ...{
+          page: payload
+        }
+      }
+    case commonActionTypes.SET_CHARACTER_NAME:
+      return {
+        ...state,
+        ...{
+          characterName: payload
         }
       }
     default:

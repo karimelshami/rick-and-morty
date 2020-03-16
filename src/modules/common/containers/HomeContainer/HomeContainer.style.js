@@ -1,14 +1,23 @@
 import styled, { css } from 'styled-components'
 
 export const extendSearchButtonStyle = css`
-  width: 30%;
+  width: 20%;
   text-align: center;
   line-height: 40px;
   padding: 10px;
+  margin: 0 10px;
 `
+export const extendGetAllButtonStyle = css`
+  width: 10%;
+  text-align: center;
+  line-height: 40px;
+  padding: 10px;
+  margin: 0 10px;
+`
+
 export const extendShowMoreButtonStyle = css`
   margin: 0 auto;
-  width:30%;
+  width: 30%;
   text-align: center;
   line-height: 40px;
 `
@@ -18,8 +27,8 @@ export const ShowMore = styled.div`
 export const extendInputFieldStyle = css`
   width: 60%;
   display: flex;
-  margin : 0 10px;
-  border-bottom : 2px solid ${props=>props.theme.primary}!important;
+  margin: 0 10px;
+  border-bottom: 2px solid ${props => props.theme.primary}!important;
 `
 
 export const Container = styled.span``

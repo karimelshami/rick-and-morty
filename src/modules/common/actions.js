@@ -40,3 +40,23 @@ export function getCharacterByNameFail(value) {
     payload: value
   }
 }
+
+export function clearAllCharacters() {
+  return {
+    type: commonActionTypes.CLEAR_ALL_CHARACTERS
+  }
+}
+
+export function setPage(value) {
+  return {
+    type: commonActionTypes.SET_PAGE,
+    payload: value
+  }
+}
+
+export function setCharacterName(value) {
+  return {
+    type: commonActionTypes.SET_CHARACTER_NAME,
+    payload: value
+  }
+}

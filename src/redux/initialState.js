@@ -5,5 +5,7 @@ export const initialState = {
     status: '',
     info: {},
     results: []
-  }
+  },
+  page: 1,
+  characterName: ''
 }
