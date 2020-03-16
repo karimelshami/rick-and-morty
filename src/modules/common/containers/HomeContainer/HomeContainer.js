@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Container,
-  CardsWrapper,
   Searchbar,
   extendSearchButtonStyle,
   extendInputFieldStyle,
   ShowMore,
-  extendShowMoreButtonStyle,
-  extendGetAllButtonStyle
+  extendShowMoreButtonStyle
 } from './HomeContainer.style'
 import InputField from 'modules/common/components/InputField'
 import Text from 'modules/common/components/Text'
-import Card from 'modules/common/components/Card'
 import Button from 'modules/common/components/Button'
 import Loader from 'modules/common/components/Loader'
+import CardsWrapper from 'modules/common/components/CardsContainer'
 import { commonActions } from 'modules/common'
 import { constants } from 'utils'
 import { characterStatus, characterGender } from './HomeContainer.constants'
@@ -116,8 +114,13 @@ const HomeContainer = () => {
         />
         <Button
           handleClick={() => getAllCharacters(1)}
-          extendStyle={extendGetAllButtonStyle}
+          extendStyle={extendSearchButtonStyle}
           text={'Get All'}
+        />
+        <Button
+          handleClick={() => getReccomendedCharacters(1)}
+          extendStyle={extendSearchButtonStyle}
+          text={'Reccomend'}
         />
       </Searchbar>
     )
@@ -134,48 +137,32 @@ const HomeContainer = () => {
     )
   }
 
-  const renderAllCharactersCards = () => {
-    if (characters && characters.results) {
-      return (
-        <CardsWrapper>
-          {characters &&
-            characters.results.map(character => {
-              return (
-                <Card
-                  img={character.image}
-                  statusImg={characterStatus[character.status]}
-                  status={character.status}
-                  gender={characterGender[character.gender]}
-                  species={character.species}
-                  location={character.location.name}
-                  origin={character.origin.name}
-                  name={character.name}
-                  buttonText={`View Episodes`}
-                  handleClick={() => viewEpisodes()}
-                />
-              )
-            })}
-        </CardsWrapper>
-      )
-    }
+  const getReccomendedCharacters = () => {
+    console.log('reccomend')
   }
 
   return (
     <Container>
       {renderSearchBar()}
-      <Text
-        primaryText
-        text={
-          characterName && isSearching
-            ? `Found ${count} characters from ${characterName}`
-            : `Total Count is ${count}`
-        }
-      />
+      {count && (
+        <Text
+          primaryText
+          text={
+            characterName && isSearching
+              ? `Found ${count} characters from ${characterName}`
+              : `Total Count is ${count}`
+          }
+        />
+      )}
+
       {showLoader && page === 1 ? (
         <Loader />
       ) : (
         <>
-          {renderAllCharactersCards()}
+          <CardsWrapper
+            characters={characters}
+            viewEpisodes={() => viewEpisodes()}
+          />
           {renderShowMore()}
         </>
       )}

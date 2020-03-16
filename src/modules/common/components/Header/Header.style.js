@@ -21,11 +21,11 @@ export const Brand = styled.img`
 export const List = styled.ul`
   list-style: none;
   display: flex;
-  justify-content: flex-start;
+  width: 100%;
+  justify-content: flex-end;
   margin: 10px;
   font-size: 16px;
   font-weight: 700;
-
 `
 export const ListItem = styled.li`
   margin: 0 5px;

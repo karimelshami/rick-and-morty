@@ -2,12 +2,10 @@ import React from 'react'
 import Text from 'modules/common/components/Text'
 import { Container, Brand, List, ListItem } from './Header.style'
 import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
 
 const Header = props => {
-  const { img, listItems } = props
-  const history = useHistory()
-  const navigate = route => history.push(`/${route}`)
+  const { img, listItems, handleClick } = props
+
   return (
     <Container>
       <Brand src={img} />
@@ -15,21 +13,21 @@ const Header = props => {
         {listItems &&
           listItems.map((listItem, index) => {
             return (
-              <ListItem onClick={() => navigate(listItem.route)}>
+              <ListItem kye={index} onClick={() => handleClick(listItem.id)}>
                 {listItem.name}
               </ListItem>
             )
           })}
       </List>
-
     </Container>
   )
 }
 Header.propTypes = {
   img: PropTypes.string,
+  handleClick: PropTypes.func,
   listItems: PropTypes.arrayOf({
     name: PropTypes.string,
-    route: PropTypes.string
+    id: PropTypes.string
   })
 }
 export default Header
