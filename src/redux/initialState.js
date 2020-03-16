@@ -1,7 +1,7 @@
 import { constants } from 'utils'
 
 export const initialState = {
-  allCharacters: {
+  characters: {
     status: '',
     info: {},
     results: []

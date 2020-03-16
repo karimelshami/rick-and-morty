@@ -19,3 +19,24 @@ export function getAllCharactersFail(value) {
     payload: value
   }
 }
+
+export function getCharacterByName(value) {
+  return {
+    type: commonActionTypes.GET_CHARACTER_BY_NAME,
+    payload: value
+  }
+}
+
+export function getCharacterByNameSuccess(value) {
+  return {
+    type: commonActionTypes.GET_CHARACTER_BY_NAME_SUCCESS,
+    payload: value
+  }
+}
+
+export function getCharacterByNameFail(value) {
+  return {
+    type: commonActionTypes.GET_CHARACTER_BY_NAME_FAIL,
+    payload: value
+  }
+}

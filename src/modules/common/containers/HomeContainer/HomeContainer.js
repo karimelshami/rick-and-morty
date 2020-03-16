@@ -20,11 +20,12 @@ import { characterStatus, characterGender } from './HomeContainer.constants'
 const { status } = constants
 
 const HomeContainer = () => {
-  const { allCharacters, showLoader } = useSelector(state => ({
-    allCharacters: state.common.allCharacters,
-    showLoader: state.common.allCharacters.status === status.FETCHING
+  const { characters, showLoader } = useSelector(state => ({
+    characters: state.common.characters,
+    showLoader: state.common.characters.status === status.FETCHING
   }))
   const [page, setPage] = useState(1)
+  const [name, setName] = useState('')
   const dispatch = useDispatch()
   const getAllCharacters = () => {
     dispatch(commonActions.getAllCharacters(page))
@@ -33,12 +34,9 @@ const HomeContainer = () => {
     getAllCharacters(page)
   }, [page])
 
-  const handleInputChange = () => {
-    console.log('--------------')
-  }
-  const search = () => {
-    console.log('search')
-  }
+  const handleInputChange = value => setName(value)
+  const search = () => dispatch(commonActions.getCharacterByName(name))
+
   const viewEpisodes = () => {
     console.log('view Episodes')
   }
@@ -50,7 +48,7 @@ const HomeContainer = () => {
       <Searchbar>
         <InputField
           placeholder="Search by your favourite charachter"
-          handleChange={() => handleInputChange()}
+          handleChange={e => handleInputChange(e.target.value)}
           extendStyle={extendInputFieldStyle}
         />
         <Button
@@ -74,11 +72,11 @@ const HomeContainer = () => {
   }
 
   const renderAllCharactersCards = () => {
-    if (allCharacters && allCharacters.results) {
+    if (characters && characters.results) {
       return (
         <CardsWrapper>
-          {allCharacters &&
-            allCharacters.results.map(character => {
+          {characters &&
+            characters.results.map(character => {
               return (
                 <Card
                   img={character.image}

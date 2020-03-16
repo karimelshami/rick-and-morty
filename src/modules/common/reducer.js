@@ -10,9 +10,9 @@ export function commonReducer(state = initialState, { payload, type }) {
       return {
         ...state,
         ...{
-          allCharacters: {
+          characters: {
             status: status.FETCHING,
-            results: [...state.allCharacters.results],
+            results: [...state.characters.results]
           }
         }
       }
@@ -20,10 +20,10 @@ export function commonReducer(state = initialState, { payload, type }) {
       return {
         ...state,
         ...{
-          allCharacters: {
+          characters: {
             status: status.SUCCESS,
             ...payload,
-            results: [...state.allCharacters.results, ...payload.results],
+            results: [...state.characters.results, ...payload.results]
           }
         }
       }
@@ -31,7 +31,35 @@ export function commonReducer(state = initialState, { payload, type }) {
       return {
         ...state,
         ...{
-          allCharacters: {
+          characters: {
+            status: status.FAIL
+          }
+        }
+      }
+    case commonActionTypes.GET_CHARACTER_BY_NAME:
+      return {
+        ...state,
+        ...{
+          characters: {
+            status: status.FETCHING
+          }
+        }
+      }
+    case commonActionTypes.GET_CHARACTER_BY_NAME_SUCCESS:
+      return {
+        ...state,
+        ...{
+          characters: {
+            status: status.SUCCESS,
+            ...payload
+          }
+        }
+      }
+    case commonActionTypes.GET_CHARACTER_BY_NAME_FAIL:
+      return {
+        ...state,
+        ...{
+          characters: {
             status: status.FAIL
           }
         }
