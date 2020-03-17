@@ -8,7 +8,8 @@ export const initialState = {
   },
   page: 1,
   characterName: '',
-  episodes : {
+  episodes: {
     status: '',
+    results: []
   }
 }

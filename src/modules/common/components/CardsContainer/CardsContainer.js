@@ -22,7 +22,9 @@ const CardsContainer = props => {
               origin={character.origin.name}
               name={character.name}
               buttonText={`View Episodes`}
-              handleClick={() => viewEpisodes(character.episode)}
+              handleClick={() =>
+                viewEpisodes(character.episode, character.name)
+              }
             />
           )
         })}

@@ -6,13 +6,15 @@ import {
   extendSearchButtonStyle,
   extendInputFieldStyle,
   ShowMore,
-  extendShowMoreButtonStyle
+  extendShowMoreButtonStyle,
+  ListItem
 } from './HomeContainer.style'
 import InputField from 'modules/common/components/InputField'
 import Text from 'modules/common/components/Text'
 import Button from 'modules/common/components/Button'
 import Loader from 'modules/common/components/Loader'
-import CardsWrapper from 'modules/common/components/CardsContainer'
+import Modal from 'modules/common/components/Modal'
+import CardsContainer from 'modules/common/components/CardsContainer'
 import { commonActions } from 'modules/common'
 import { constants } from 'utils'
 import { characterStatus, characterGender } from './HomeContainer.constants'
@@ -25,21 +27,26 @@ const HomeContainer = () => {
     showSearchingLoader,
     page,
     characterName,
-    count
+    count,
+    episodes
   } = useSelector(state => ({
     characters: state.common.characters,
     showLoader:
-      state.common.characters.status === status.FETCHING &&
-      state.common.page === 1,
+      state.common.characters.status ===
+        (status.FETCHING && state.common.page === 1) ||
+      state.common.episodes.status === status.FETCHING,
     showSearchingLoader: state.common.characters.status === status.FETCHING,
     page: state.common.page,
     characterName: state.common.characterName,
     count:
       state.common.characters &&
       state.common.characters.info &&
-      state.common.characters.info.count
+      state.common.characters.info.count,
+    episodes: state.common.episodes
   }))
   const [isSearching, setIsSearching] = useState(false)
+  const [episodesModalState, setEpisodesModalState] = useState(false)
+  const [selectedCharacter, setSelectedCharacter] = useState('false')
 
   useEffect(() => {
     getAllCharacters(1)
@@ -70,7 +77,7 @@ const HomeContainer = () => {
     await clearAll
   }
 
-  const viewEpisodes = episodes => {
+  const viewEpisodes = (episodes, charachterName) => {
     let episodeIds = []
     let episodeIdsString = ''
     let apiURL = 'https://rickandmortyapi.com/api/episode/'
@@ -80,7 +87,10 @@ const HomeContainer = () => {
     }
     episodeIdsString = episodeIds.toString()
     console.log(episodeIdsString)
+    console.log(characterName)
+    setSelectedCharacter(charachterName)
     dispatch(commonActions.getEpisodes(episodeIdsString))
+    toggleModalState()
   }
 
   const getCharacterByName = page => {
@@ -149,6 +159,27 @@ const HomeContainer = () => {
   const getReccomendedCharacters = () => {
     console.log('reccomend')
   }
+  const toggleModalState = () => setEpisodesModalState(!episodesModalState)
+
+  const renderModal = () => {
+    let episodesList = []
+    if (episodes && episodes.results) {
+      episodesList = episodes.results.map((episode, index) => {
+        return (
+          <ListItem key={index}>
+            <Text secondaryText text={`${episode.name}(${episode.episode})`} />
+          </ListItem>
+        )
+      })
+    }
+    return (
+      <Modal
+        title={`${selectedCharacter} Episodes`}
+        onClose={() => toggleModalState()}
+        content={episodesList}
+      />
+    )
+  }
 
   return (
     <Container>
@@ -163,16 +194,18 @@ const HomeContainer = () => {
           }
         />
       )}
-
       {showLoader && page === 1 ? (
         <Loader />
       ) : (
         <>
-          <CardsWrapper
+          <CardsContainer
             characters={characters}
-            viewEpisodes={episodes => viewEpisodes(episodes)}
+            viewEpisodes={(episodes, charachterName) =>
+              viewEpisodes(episodes, charachterName)
+            }
           />
           {renderShowMore()}
+          {!showLoader && episodesModalState && renderModal()}
         </>
       )}
     </Container>

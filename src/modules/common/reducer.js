@@ -73,7 +73,7 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...{
           episodes: {
             status: status.FETCHING,
-            ...payload
+            results: [...payload]
           }
         }
       }
@@ -83,7 +83,7 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...{
           episodes: {
             status: status.SUCCESS,
-            ...payload
+            results: [...payload]
           }
         }
       }

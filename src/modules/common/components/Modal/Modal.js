@@ -3,26 +3,13 @@ import {
   ModalContainer,
   ModelActions,
   CloseButton,
-  ProductImg,
-  Input,
   MainContainer
 } from './Modal.style'
-import { Text } from 'common.style'
+import PropTypes from 'prop-types'
+import Text from 'modules/common/components/Text'
 import Close from 'assets/close.png'
 const Modal = props => {
-  const {
-    productName,
-    productCode,
-    price,
-    onClose,
-    addToCart,
-    addedToCart,
-    setItemsCount
-  } = props
-
-  const handleItemCountChange = event => {
- 
-  }
+  const { onClose, content, title } = props
   return (
     <ModalContainer>
       <ModelActions>
@@ -33,10 +20,15 @@ const Modal = props => {
           alt="close button"
         />
       </ModelActions>
-        <MainContainer>
-      
+      <MainContainer>
+        <Text primaryText text={title} />
+        {content}
         </MainContainer>
     </ModalContainer>
   )
+}
+Modal.propTypes = {
+  content: PropTypes.node,
+  onClose: PropTypes.func
 }
 export default Modal

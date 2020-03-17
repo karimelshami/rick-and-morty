@@ -36,3 +36,8 @@ export const Searchbar = styled.div`
   display: flex;
   flex-direction: row;
 `
+export const ListItem = styled.div`
+  padding: 10px;
+  width:100%;
+  border-bottom: 1px solid ${props => props.theme.primary};
+`

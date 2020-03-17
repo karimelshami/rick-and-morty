@@ -28,6 +28,7 @@ function* getEpisodesByIdsSaga(payload) {
   try {
     const response = yield call(commonApi.getEpisodesByIds, payload)
     yield put(commonActions.getEpisodesSuccess(response.data))
+    console.log(response.data)
   } catch (error) {
     yield put(commonActions.getEpisodesFail())
   }
