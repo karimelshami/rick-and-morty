@@ -66,6 +66,36 @@ export function commonReducer(state = initialState, { payload, type }) {
           }
         }
       }
+    case commonActionTypes.GET_CHARACTER_BY_SPECIES:
+      return {
+        ...state,
+        ...{
+          characters: {
+            status: status.FETCHING,
+            results: [...state.characters.results]
+          }
+        }
+      }
+    case commonActionTypes.GET_CHARACTER_BY_SPECIES_SUCCESS:
+      return {
+        ...state,
+        ...{
+          characters: {
+            status: status.SUCCESS,
+            ...payload,
+            results: [...state.characters.results, ...payload.results]
+          }
+        }
+      }
+    case commonActionTypes.GET_CHARACTER_BY_SPECIES_FAIL:
+      return {
+        ...state,
+        ...{
+          characters: {
+            status: status.FAIL
+          }
+        }
+      }
 
     case commonActionTypes.GET_EPISODES:
       return {

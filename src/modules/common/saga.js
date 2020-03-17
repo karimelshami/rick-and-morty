@@ -24,6 +24,15 @@ function* getCharacterByNameSaga(payload) {
   }
 }
 
+function* getCharacterBySpeciesSaga(payload) {
+  try {
+    const response = yield call(commonApi.getCharacterBySpecies, payload)
+    yield put(commonActions.getCharacterBySpeciesSuccess(response.data))
+  } catch (error) {
+    yield put(commonActions.getCharacterBySpeciesFail())
+  }
+}
+
 function* getEpisodesByIdsSaga(payload) {
   try {
     const response = yield call(commonApi.getEpisodesByIds, payload)
@@ -41,6 +50,10 @@ function* commonSagas() {
     getCharacterByNameSaga
   )
   yield takeLatest(commonActionTypes.GET_EPISODES, getEpisodesByIdsSaga)
+  yield takeLatest(
+    commonActionTypes.GET_CHARACTER_BY_SPECIES,
+    getCharacterBySpeciesSaga
+  )
 }
 
 export default commonSagas

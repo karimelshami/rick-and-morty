@@ -9,6 +9,11 @@ export function getCharacterByName(payload) {
     `${Urls.getCharacters}?name=${payload.payload.name}&page=${payload.payload.page}`
   )
 }
+export function getCharacterBySpecies(payload) {
+  return api.get(
+    `${Urls.getCharacters}?species=${payload.payload.species}&page=${payload.payload.page}`
+  )
+}
 
 export function getEpisodesByIds(payload) {
   return api.get(`${Urls.getEpisodes}/${payload.payload}`)

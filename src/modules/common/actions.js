@@ -27,6 +27,26 @@ export function getCharacterByName(value) {
   }
 }
 
+export function getCharacterBySpeciesSuccess(value) {
+  return {
+    type: commonActionTypes.GET_CHARACTER_BY_SPECIES_SUCCESS,
+    payload: value
+  }
+}
+
+export function getCharacterBySpeciesFail(value) {
+  return {
+    type: commonActionTypes.GET_CHARACTER_BY_SPECIES_FAIL,
+    payload: value
+  }
+}
+export function getCharacterBySpecies(value) {
+  return {
+    type: commonActionTypes.GET_CHARACTER_BY_SPECIES,
+    payload: value
+  }
+}
+
 export function getCharacterByNameSuccess(value) {
   return {
     type: commonActionTypes.GET_CHARACTER_BY_NAME_SUCCESS,

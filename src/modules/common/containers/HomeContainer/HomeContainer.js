@@ -17,7 +17,7 @@ import Modal from 'modules/common/components/Modal'
 import CardsContainer from 'modules/common/components/CardsContainer'
 import { commonActions } from 'modules/common'
 import { constants } from 'utils'
-import { characterStatus, characterGender } from './HomeContainer.constants'
+import Cookies from 'js-cookie'
 const { status } = constants
 
 const HomeContainer = () => {
@@ -45,6 +45,7 @@ const HomeContainer = () => {
     episodes: state.common.episodes
   }))
   const [isSearching, setIsSearching] = useState(false)
+  const [isViewingReccomended, setIsViewingReccomended] = useState(false)
   const [episodesModalState, setEpisodesModalState] = useState(false)
   const [selectedCharacter, setSelectedCharacter] = useState('false')
 
@@ -57,6 +58,7 @@ const HomeContainer = () => {
     if (isSearching) {
       clearAllCharacters()
       setIsSearching(false)
+      setIsViewingReccomended(false)
     }
     dispatch(commonActions.getAllCharacters(page))
   }
@@ -70,6 +72,7 @@ const HomeContainer = () => {
     dispatch(commonActions.setPage(firstPage))
     getCharacterByName(firstPage)
     setIsSearching(true)
+    setIsViewingReccomended(false)
   }
 
   async function clearAllCharacters() {
@@ -102,11 +105,25 @@ const HomeContainer = () => {
       })
     )
   }
+  const getCharacterBySpecies = page => {
+    let species = Cookies.get('reccomended-species')
+    console.log(species)
+    setIsViewingReccomended(true)
+    setIsSearching(false)
+    dispatch(
+      commonActions.getCharacterBySpecies({
+        species: species,
+        page: page
+      })
+    )
+  }
 
   const showMore = () => {
     let nextPage = page + 1
     if (isSearching) {
       getCharacterByName(nextPage)
+    } else if (isViewingReccomended) {
+      getCharacterBySpecies(nextPage)
     } else {
       getAllCharacters(nextPage)
     }
@@ -157,7 +174,8 @@ const HomeContainer = () => {
   }
 
   const getReccomendedCharacters = () => {
-    console.log('reccomend')
+    clearAllCharacters()
+    getCharacterBySpecies(1)
   }
   const toggleModalState = () => setEpisodesModalState(!episodesModalState)
 
