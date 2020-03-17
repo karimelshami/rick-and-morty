@@ -101,3 +101,10 @@ export function setCharacterName(value) {
     payload: value
   }
 }
+
+export function setFilter(value) {
+  return {
+    type: commonActionTypes.SET_FILTER,
+    payload: value
+  }
+}

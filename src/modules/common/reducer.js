@@ -151,6 +151,13 @@ export function commonReducer(state = initialState, { payload, type }) {
           characterName: payload
         }
       }
+    case commonActionTypes.SET_FILTER:
+      return {
+        ...state,
+        ...{
+          filter: payload
+        }
+      }
     default:
       return state
   }

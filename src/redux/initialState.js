@@ -11,5 +11,6 @@ export const initialState = {
   episodes: {
     status: '',
     results: []
-  }
+  },
+  filter: { all: false, species: false, name: false }
 }

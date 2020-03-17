@@ -9,4 +9,3 @@ const Loader = () => {
   )
 }
 export default Loader
-//TODO: PROPTYPES
