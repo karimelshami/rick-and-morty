@@ -41,6 +41,27 @@ export function getCharacterByNameFail(value) {
   }
 }
 
+export function getEpisodes(value) {
+  return {
+    type: commonActionTypes.GET_EPISODES,
+    payload: value
+  }
+}
+
+export function getEpisodesSuccess(value) {
+  return {
+    type: commonActionTypes.GET_EPISODES_SUCCESS,
+    payload: value
+  }
+}
+
+export function getEpisodesFail(value) {
+  return {
+    type: commonActionTypes.GET_EPISODES_FAIL,
+    payload: value
+  }
+}
+
 export function clearAllCharacters() {
   return {
     type: commonActionTypes.CLEAR_ALL_CHARACTERS

@@ -9,6 +9,7 @@ export const CustomButton = styled.div`
   height: 40px;
   color: ${props => props.theme.main};
   font-weight: 700;
+  font-size:14px;
   padding: 10px;
   border-radius: 5px;
   &&:hover {
@@ -17,6 +18,7 @@ export const CustomButton = styled.div`
   }
 `
 export const Img = styled.img`
-  height: 40px;
+  height: 20px;
+  padding: 10px;
   float: right;
 `

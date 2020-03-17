@@ -27,7 +27,6 @@ export const extendInputFieldStyle = css`
   `}
   ${props => props.theme.media.phone`
   width: 100%;
-  display: block;
   `}
 `
 

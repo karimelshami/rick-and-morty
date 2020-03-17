@@ -1,6 +1,7 @@
-const BaseUrl = 'https://rickandmortyapi.com/api/'
+const BaseUrl = 'https://rickandmortyapi.com/api'
 const Urls = {
-  getCharacters: `${BaseUrl}/character`
+  getCharacters: `${BaseUrl}/character`,
+  getEpisodes: `${BaseUrl}/episode`
 }
 
 export { Urls }

@@ -7,5 +7,8 @@ export const initialState = {
     results: []
   },
   page: 1,
-  characterName: ''
+  characterName: '',
+  episodes : {
+    status: '',
+  }
 }

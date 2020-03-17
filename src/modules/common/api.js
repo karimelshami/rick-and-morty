@@ -5,5 +5,11 @@ export function getAllCharacters(payload) {
 }
 
 export function getCharacterByName(payload) {
-  return api.get(`${Urls.getCharacters}?name=${payload.payload.name}&page=${payload.payload.page}`)
+  return api.get(
+    `${Urls.getCharacters}?name=${payload.payload.name}&page=${payload.payload.page}`
+  )
+}
+
+export function getEpisodesByIds(payload) {
+  return api.get(`${Urls.getEpisodes}/${payload.payload}`)
 }

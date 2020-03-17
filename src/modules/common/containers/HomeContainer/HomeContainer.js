@@ -70,8 +70,17 @@ const HomeContainer = () => {
     await clearAll
   }
 
-  const viewEpisodes = () => {
-    console.log('view Episodes')
+  const viewEpisodes = episodes => {
+    let episodeIds = []
+    let episodeIdsString = ''
+    let apiURL = 'https://rickandmortyapi.com/api/episode/'
+    for (let i = 0; i < episodes.length; i++) {
+      episodeIds.concat()
+      episodeIds.push(episodes[i].replace(apiURL, ''))
+    }
+    episodeIdsString = episodeIds.toString()
+    console.log(episodeIdsString)
+    dispatch(commonActions.getEpisodes(episodeIdsString))
   }
 
   const getCharacterByName = page => {
@@ -161,7 +170,7 @@ const HomeContainer = () => {
         <>
           <CardsWrapper
             characters={characters}
-            viewEpisodes={() => viewEpisodes()}
+            viewEpisodes={episodes => viewEpisodes(episodes)}
           />
           {renderShowMore()}
         </>

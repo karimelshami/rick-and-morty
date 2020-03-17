@@ -16,12 +16,20 @@ function* getCharacterByNameSaga(payload) {
     const response = yield call(commonApi.getCharacterByName, payload)
     yield put(commonActions.getCharacterByNameSuccess(response.data))
     if (!Cookies.get('reccomended-species')) {
-      debugger
       let species = response.data.results[0].species
       Cookies.set('reccomended-species', species)
     }
   } catch (error) {
     yield put(commonActions.getCharacterByNameFail())
+  }
+}
+
+function* getEpisodesByIdsSaga(payload) {
+  try {
+    const response = yield call(commonApi.getEpisodesByIds, payload)
+    yield put(commonActions.getEpisodesSuccess(response.data))
+  } catch (error) {
+    yield put(commonActions.getEpisodesFail())
   }
 }
 
@@ -31,6 +39,7 @@ function* commonSagas() {
     commonActionTypes.GET_CHARACTER_BY_NAME,
     getCharacterByNameSaga
   )
+  yield takeLatest(commonActionTypes.GET_EPISODES, getEpisodesByIdsSaga)
 }
 
 export default commonSagas
