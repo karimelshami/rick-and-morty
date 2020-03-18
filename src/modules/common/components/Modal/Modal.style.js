@@ -7,8 +7,8 @@ export const ModalContainer = styled.div`
   overflow: auto;  
   background-color: #fff;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  top: 30%;
+  bottom: 10%;
   right: 0;
   left: 0;
   margin: auto;

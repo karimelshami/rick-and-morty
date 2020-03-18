@@ -5,7 +5,7 @@ import { constants } from 'utils'
 const { status } = constants
 
 export function commonReducer(state = initialState, { payload, type }) {
-  debugger
+  
   switch (type) {
     case commonActionTypes.GET_ALL_CHARACTERS:
       return {

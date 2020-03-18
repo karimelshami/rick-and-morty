@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const Brand = styled.img`
   height: 120px;
   border-radius: 0 0 5px 5px;
-  opacity: 0.8;
+  cursor: pointer;
   ${props => props.theme.media.tablet`
   height: 80px;
   opacity:1;

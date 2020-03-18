@@ -7,6 +7,7 @@ import Button from 'modules/common/components/Button'
 import Loader from 'modules/common/components/Loader'
 import Modal from 'modules/common/components/Modal'
 import CardsContainer from 'modules/common/components/CardsContainer'
+import NotFound from 'modules/common/components/NotFound'
 import { commonActions } from 'modules/common'
 import { constants } from 'utils'
 import { staticText } from './HomeContainer.constants'
@@ -194,7 +195,7 @@ const HomeContainer = () => {
 
   const renderModal = () => {
     let episodesList = []
-    debugger
+    
     if (episodes && episodes.results) {
       episodesList = episodes.results.map((episode, index) => {
         return (
@@ -236,7 +237,7 @@ const HomeContainer = () => {
         />
       )
     } else {
-      return <Text primaryText text={staticText.noResults} />
+      return <NotFound />
     }
   }
   /**------------------------------------------Render functions------------------------------------------*/

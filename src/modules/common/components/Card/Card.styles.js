@@ -3,11 +3,19 @@ import styled, { css } from 'styled-components'
 export const extendButtonStyle = css`
   width: 70%;
   text-align: center;
-  line-height: 40px;
   margin: 10px auto;
+  
 `
 export const extendTextStyle = css`
   height: 50px;
+  ${props => props.theme.media.tablet`
+  height:30px;
+  font-size:14px;
+`}
+  ${props => props.theme.media.phone`
+  height:20px;
+  font-size:13px;
+`}
 `
 
 export const CardTitleAndImageWrapper = styled.div`
@@ -17,6 +25,12 @@ export const CardTitleAndImageWrapper = styled.div`
 export const Img = styled.img`
   object-fit: cover;
   width: 100%;
+  ${props => props.theme.media.tablet`
+    height:350px;
+  `}
+  ${props => props.theme.media.phone`
+    height:350px;
+  `}
 `
 export const Card = styled.div`
   background-color: #fff;
@@ -30,20 +44,27 @@ export const Card = styled.div`
   height: 700px;
   ${props => props.theme.media.tablet`
   width: 45%;
+  height: unset;
+
   `}
   ${props => props.theme.media.phone`
   width: 100%;
   height: unset;
-  display: block;
+
   `}
 `
 
 export const CardContent = styled.div`
   padding: 0px 20px;
   display: block;
-  height: 300px;
   position: relative;
 `
 export const StatusImage = styled.img`
   height: 60px;
+  ${props => props.theme.media.tablet`
+  height:40px;
+`}
+  ${props => props.theme.media.phone`
+  height:30px;
+`}
 `

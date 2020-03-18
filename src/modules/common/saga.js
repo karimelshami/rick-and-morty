@@ -36,8 +36,12 @@ function* getCharacterBySpeciesSaga(payload) {
 function* getEpisodesByIdsSaga(payload) {
   try {
     const response = yield call(commonApi.getEpisodesByIds, payload)
-    yield put(commonActions.getEpisodesSuccess(response.data))
-    console.log(response.data)
+    let responseArray = response.data
+    if (!response.data.length) {
+      responseArray = []
+      responseArray[0] = response.data
+    }
+    yield put(commonActions.getEpisodesSuccess(responseArray))
   } catch (error) {
     yield put(commonActions.getEpisodesFail())
   }

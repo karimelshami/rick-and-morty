@@ -1,14 +1,17 @@
 import React from 'react'
-import Text from 'modules/common/components/Text'
 import { Container, Brand, List, ListItem } from './Header.style'
+import { useHistory } from 'react-router'
+
 import PropTypes from 'prop-types'
 
 const Header = props => {
   const { img, listItems, handleClick } = props
+  const history = useHistory()
 
+  const BackToHome = () => history.push('/')
   return (
     <Container>
-      <Brand src={img} />
+      <Brand src={img} alt="logo" onClick={() => BackToHome()} />
       <List>
         {listItems &&
           listItems.map((listItem, index) => {
