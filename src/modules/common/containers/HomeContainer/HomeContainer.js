@@ -174,7 +174,7 @@ const HomeContainer = () => {
           handleClick={() => search()}
           extendStyle={extendSearchButtonStyle}
           text={'Search'}
-          loading={showSearchingLoader}
+          loading={filter.name && showSearchingLoader}
         />
       </Searchbar>
     )
@@ -187,12 +187,14 @@ const HomeContainer = () => {
           handleClick={() => getCharacters(firstPage, 'all')}
           extendStyle={extendExtrsButtonStyle}
           text={'Reset'}
+          loading={filter.all && showSearchingLoader}
         />
         {Cookies.get('reccomended-species') && (
           <Button
             handleClick={() => getReccomendedCharacters()}
             extendStyle={extendExtrsButtonStyle}
-            text={'View Reccomended'}
+            text={'Reccomended'}
+            loading={filter.species && showSearchingLoader}
           />
         )}
       </ExtraButtonsWrapper>
@@ -201,7 +203,6 @@ const HomeContainer = () => {
 
   const renderModal = () => {
     let episodesList = []
-
     if (episodes && episodes.results) {
       episodesList = episodes.results.map((episode, index) => {
         return (

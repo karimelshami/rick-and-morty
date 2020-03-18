@@ -1,24 +1,26 @@
 import styled from 'styled-components'
 
 export const CustomButton = styled.div`
-  ${props => props.extendStyle || ''};
   background-color: ${props => props.theme.secondary};
   border-color: ${props => props.theme.secondary};
   text-transform: uppercase;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
   height: 35px;
   color: ${props => props.theme.main};
   font-weight: 700;
   font-size: 15px;
   border-radius: 5px;
-  margin-bottom :10px;
+  margin: 0 10px;
+  margin-bottom: 10px;
   line-height: 35px;
-  display:block;
   &&:hover {
     background-color: ${props => props.theme.primary};
     color: #fff;
   }
+  ${props => props.extendStyle || ''};
+
   ${props => props.theme.media.tablet`
   height:25px;
   font-size:14px;
@@ -36,8 +38,11 @@ export const CustomButton = styled.div`
 `}
 `
 export const Img = styled.img`
-  height: 20px;
-  padding: 10px;
-  float: right;
-  
+  height: 35px;
+  ${props => props.theme.media.tablet`
+  height:25px;
+`}
+  ${props => props.theme.media.phone`
+  height:20px;
+`}
 `

@@ -9,21 +9,21 @@ export const extendSearchButtonStyle = css`
 export const extendExtrsButtonStyle = css`
   width: 50%;
   padding: 10px;
-  margin: 0 10px;
 `
 
 export const ExtraButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top:10px;
+  margin-top: 10px;
 `
 
 export const extendShowMoreButtonStyle = css`
-  margin: 0 auto;
   width: 30%;
   text-align: center;
   line-height: 40px;
+  margin: auto!important;
+
 `
 export const ShowMore = styled.div`
   width: 100%;

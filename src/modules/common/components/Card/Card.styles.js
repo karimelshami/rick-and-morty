@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components'
 
 export const extendButtonStyle = css`
   width: 70%;
-  margin: 10px auto;
   
 `
 export const extendTextStyle = css`
