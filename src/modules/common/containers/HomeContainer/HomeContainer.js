@@ -17,13 +17,15 @@ import {
   extendInputFieldStyle,
   ShowMore,
   extendShowMoreButtonStyle,
-  ListItem
+  ListItem,
+  ExtraButtonsWrapper,
+  extendExtrsButtonStyle
 } from './HomeContainer.style'
 
 const HomeContainer = () => {
   const dispatch = useDispatch()
   const { status } = constants
-  const firstPage = 0
+  const firstPage = 1
   /**------------------------------------------Application state------------------------------------------*/
   const {
     characters,
@@ -33,7 +35,9 @@ const HomeContainer = () => {
     characterName,
     count,
     episodes,
-    filter
+    filter,
+    character,
+    totalPages
   } = useSelector(state => ({
     characters: state.common.characters,
     showLoader:
@@ -47,12 +51,16 @@ const HomeContainer = () => {
       state.common.characters &&
       state.common.characters.info &&
       state.common.characters.info.count,
+    totalPages:
+      state.common.characters &&
+      state.common.characters.info &&
+      state.common.characters.info.pages,
     episodes: state.common.episodes,
-    filter: state.common.filter
+    filter: state.common.filter,
+    character: state.common.character
   }))
-  //TODO move this state to redux
+  //TODO: Implement no search results
   const [episodesModalState, setEpisodesModalState] = useState(false)
-  const [selectedCharacter, setSelectedCharacter] = useState('false')
 
   /**------------------------------------------Application state------------------------------------------*/
 
@@ -62,10 +70,7 @@ const HomeContainer = () => {
   }, [])
   /**------------------------------------------Componant did mount------------------------------------------*/
   /**------------------------------------------Componant logic------------------------------------------*/
-  async function clearAllCharacters() {
-    let clearAll = dispatch(commonActions.clearAllCharacters())
-    await clearAll
-  }
+  const clearAllCharacters = () => dispatch(commonActions.clearAllCharacters())
 
   const toggleModalState = () => setEpisodesModalState(!episodesModalState)
 
@@ -130,6 +135,7 @@ const HomeContainer = () => {
   }
 
   const viewEpisodes = (episodes, charachterName) => {
+    debugger
     let episodeIds = []
     let episodeIdsString = ''
     for (let i = 0; i < episodes.length; i++) {
@@ -137,7 +143,7 @@ const HomeContainer = () => {
       episodeIds.push(episodes[i].replace(staticText.episodeApiURL, ''))
     }
     episodeIdsString = episodeIds.toString()
-    setSelectedCharacter(charachterName)
+    dispatch(commonActions.setCharacter(charachterName))
     dispatch(commonActions.getEpisodes(episodeIdsString))
     toggleModalState()
   }
@@ -164,19 +170,26 @@ const HomeContainer = () => {
           text={'Search'}
           loading={showSearchingLoader}
         />
+      </Searchbar>
+    )
+  }
+
+  const renderExtraButtons = () => {
+    return (
+      <ExtraButtonsWrapper>
         <Button
           handleClick={() => getCharacters(firstPage, 'all')}
-          extendStyle={extendSearchButtonStyle}
-          text={'Get All'}
+          extendStyle={extendExtrsButtonStyle}
+          text={'Reset'}
         />
         {Cookies.get('reccomended-species') && (
           <Button
             handleClick={() => getReccomendedCharacters()}
-            extendStyle={extendSearchButtonStyle}
-            text={'Reccomend'}
+            extendStyle={extendExtrsButtonStyle}
+            text={'View Reccomended'}
           />
         )}
-      </Searchbar>
+      </ExtraButtonsWrapper>
     )
   }
 
@@ -193,7 +206,7 @@ const HomeContainer = () => {
     }
     return (
       <Modal
-        title={`${selectedCharacter} Episodes`}
+        title={`${character} Episodes`}
         onClose={() => toggleModalState()}
         content={episodesList}
       />
@@ -218,17 +231,32 @@ const HomeContainer = () => {
   return (
     <Container>
       {renderSearchBar()}
+      {renderExtraButtons()}
       {count && (
-        <Text
-          primaryText
-          text={
-            characterName && filter.name
-              ? `Found ${count} characters from ${characterName}`
-              : `Total Count is ${count}`
-          }
-        />
+        <>
+          <Text
+            primaryText
+            text={
+              characterName && filter.name
+                ? `Found ${count} characters from ${characterName}`
+                : `Total Count is ${count}`
+            }
+          />
+          <Text
+            primaryText
+            text={
+              filter.all
+                ? staticText.all
+                : filter.species
+                ? staticText.species
+                : filter.name
+                ? staticText.name
+                : ''
+            }
+          />
+        </>
       )}
-      {showLoader && page === 1 ? (
+      {showLoader && page === firstPage ? (
         <Loader />
       ) : (
         <>
@@ -238,12 +266,12 @@ const HomeContainer = () => {
               viewEpisodes(episodes, charachterName)
             }
           />
-          {renderShowMore()}
+          {!showLoader && page < totalPages && renderShowMore()}
           {!showLoader && episodesModalState && renderModal()}
         </>
       )}
     </Container>
   )
-  /**------------------------------------------Componant did mount------------------------------------------*/
+  /**------------------------------------------Componant render return------------------------------------------*/
 }
 export default HomeContainer

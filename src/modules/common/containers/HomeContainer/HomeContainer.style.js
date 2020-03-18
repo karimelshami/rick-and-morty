@@ -1,11 +1,26 @@
 import styled, { css } from 'styled-components'
 
 export const extendSearchButtonStyle = css`
-  width: 10%;
+  width: 30%;
   text-align: center;
   line-height: 40px;
   padding: 10px;
   margin: 0 10px;
+`
+
+export const extendExtrsButtonStyle = css`
+  width: 50%;
+  text-align: center;
+  line-height: 40px;
+  padding: 10px;
+  margin: 0 10px;
+`
+
+export const ExtraButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top:10px;
 `
 
 export const extendShowMoreButtonStyle = css`
@@ -38,6 +53,6 @@ export const Searchbar = styled.div`
 `
 export const ListItem = styled.div`
   padding: 10px;
-  width:100%;
+  width: 100%;
   border-bottom: 1px solid ${props => props.theme.primary};
 `

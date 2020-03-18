@@ -12,5 +12,6 @@ export const initialState = {
     status: '',
     results: []
   },
-  filter: { all: false, species: false, name: false }
+  filter: { all: true, species: false, name: false },
+  character: ''
 }
