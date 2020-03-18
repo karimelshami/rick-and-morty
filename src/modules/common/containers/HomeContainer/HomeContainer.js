@@ -42,8 +42,8 @@ const HomeContainer = () => {
   } = useSelector(state => ({
     characters: state.common.characters,
     showLoader:
-      state.common.characters.status ===
-        (status.FETCHING && state.common.page === 1) ||
+      (state.common.characters.status === status.FETCHING &&
+        state.common.page === 1) ||
       state.common.episodes.status === status.FETCHING,
     showSearchingLoader: state.common.characters.status === status.FETCHING,
     page: state.common.page,
@@ -137,6 +137,7 @@ const HomeContainer = () => {
     dispatch(commonActions.setPage(nextPage))
   }
   const search = () => {
+    clearAllCharacters()
     dispatch(commonActions.setPage(firstPage))
     getCharacters(firstPage, 'name')
   }
@@ -189,7 +190,7 @@ const HomeContainer = () => {
           text={'Reset'}
           loading={filter.all && showSearchingLoader}
         />
-        {Cookies.get('reccomended-species') && (
+        {showReccomendedButton && (
           <Button
             handleClick={() => getReccomendedCharacters()}
             extendStyle={extendExtrsButtonStyle}
@@ -253,38 +254,38 @@ const HomeContainer = () => {
 
   return (
     <Container>
-      {renderSearchBar()}
-      {renderExtraButtons()}
-      {count && (
-        <>
-          <Text
-            primaryText
-            text={
-              characterName && filter.name
-                ? `Found ${count} characters from ${characterName}`
-                : `Total Count is ${count}`
-            }
-          />
-          <Text
-            primaryText
-            text={
-              filter.all
-                ? staticText.all
-                : filter.species
-                ? staticText.species
-                : filter.name
-                ? staticText.name
-                : ''
-            }
-          />
-        </>
-      )}
-      {showLoader && page === firstPage ? (
+      {showLoader ? (
         <Loader />
       ) : (
         <>
+          {renderSearchBar()}
+          {renderExtraButtons()}
+          {count && (
+            <>
+              <Text
+                primaryText
+                text={
+                  characterName && filter.name
+                    ? `Found ${count} characters from ${characterName}`
+                    : `Total Count is ${count}`
+                }
+              />
+              <Text
+                primaryText
+                text={
+                  filter.all
+                    ? staticText.all
+                    : filter.species
+                    ? staticText.species
+                    : filter.name
+                    ? staticText.name
+                    : ''
+                }
+              />
+            </>
+          )}
           {renderCharacters()}
-          {!(showLoader && page === 1) && page < totalPages && renderShowMore()}
+          {page < totalPages && renderShowMore()}
           {!showLoader && episodesModalState && renderModal()}
         </>
       )}
