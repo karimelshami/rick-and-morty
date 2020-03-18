@@ -16,6 +16,12 @@ export const ModalContainer = styled.div`
   -webkit-box-shadow: 10px 10px 18px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 18px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 18px 0px rgba(0, 0, 0, 0.75);
+  ${props => props.theme.media.tablet`
+  width: 70%;
+  `}
+  ${props => props.theme.media.phone`
+  width: 90%;
+  `}
 `
 export const ModelActions = styled.div`
   ${props => props.theme.media.tablet`

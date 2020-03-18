@@ -60,8 +60,8 @@ const HomeContainer = () => {
     filter: state.common.filter,
     character: state.common.character
   }))
-  const [episodesModalState, setEpisodesModalState] = useState(false)
-  const [reccomendedButtonState, setReccomendedButtonState] = useState(false)
+  const [episodesModalState, setEpisodesModalState] = useState(false) // to show modal
+  const [reccomendedButtonState, setReccomendedButtonState] = useState(false) // to show reccomended button if the user has done his first search
 
   /**------------------------------------------Application state------------------------------------------*/
 
