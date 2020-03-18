@@ -5,6 +5,7 @@ import { constants } from 'utils'
 const { status } = constants
 
 export function commonReducer(state = initialState, { payload, type }) {
+  debugger
   switch (type) {
     case commonActionTypes.GET_ALL_CHARACTERS:
       return {
@@ -103,7 +104,7 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...{
           episodes: {
             status: status.FETCHING,
-            results: [...payload]
+            ...payload
           }
         }
       }
@@ -122,7 +123,8 @@ export function commonReducer(state = initialState, { payload, type }) {
         ...state,
         ...{
           episodes: {
-            status: status.FAIL
+            status: status.FAIL,
+            
           }
         }
       }

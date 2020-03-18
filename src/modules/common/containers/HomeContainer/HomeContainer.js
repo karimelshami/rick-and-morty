@@ -59,7 +59,6 @@ const HomeContainer = () => {
     filter: state.common.filter,
     character: state.common.character
   }))
-  //TODO: Implement no search results
   const [episodesModalState, setEpisodesModalState] = useState(false)
 
   /**------------------------------------------Application state------------------------------------------*/
@@ -105,6 +104,7 @@ const HomeContainer = () => {
         })
       )
     } else if (filter === 'all') {
+      clearAllCharacters()
       dispatch(commonActions.getAllCharacters(page))
     }
   }
@@ -135,7 +135,6 @@ const HomeContainer = () => {
   }
 
   const viewEpisodes = (episodes, charachterName) => {
-    debugger
     let episodeIds = []
     let episodeIdsString = ''
     for (let i = 0; i < episodes.length; i++) {
@@ -195,6 +194,7 @@ const HomeContainer = () => {
 
   const renderModal = () => {
     let episodesList = []
+    debugger
     if (episodes && episodes.results) {
       episodesList = episodes.results.map((episode, index) => {
         return (
@@ -223,6 +223,21 @@ const HomeContainer = () => {
         />
       </ShowMore>
     )
+  }
+
+  const renderCharacters = () => {
+    if (characters && characters.results && !showLoader) {
+      return (
+        <CardsContainer
+          characters={characters}
+          viewEpisodes={(episodes, charachterName) =>
+            viewEpisodes(episodes, charachterName)
+          }
+        />
+      )
+    } else {
+      return <Text primaryText text={staticText.noResults} />
+    }
   }
   /**------------------------------------------Render functions------------------------------------------*/
 
@@ -260,13 +275,8 @@ const HomeContainer = () => {
         <Loader />
       ) : (
         <>
-          <CardsContainer
-            characters={characters}
-            viewEpisodes={(episodes, charachterName) =>
-              viewEpisodes(episodes, charachterName)
-            }
-          />
-          {!showLoader && page < totalPages && renderShowMore()}
+          {renderCharacters()}
+          {!(showLoader && page === 1) && page < totalPages && renderShowMore()}
           {!showLoader && episodesModalState && renderModal()}
         </>
       )}

@@ -10,9 +10,10 @@ const CardsContainer = props => {
   return (
     <CardsWrapper>
       {characters &&
-        characters.results.map(character => {
+        characters.results.map((character, index) => {
           return (
             <Card
+              key={index}
               img={character.image}
               statusImg={characterStatus[character.status]}
               status={character.status}
