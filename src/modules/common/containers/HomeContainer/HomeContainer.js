@@ -172,6 +172,7 @@ const HomeContainer = () => {
           extendStyle={extendInputFieldStyle}
         />
         <Button
+          id="search--button"
           handleClick={() => search()}
           extendStyle={extendSearchButtonStyle}
           text={'Search'}
@@ -185,13 +186,15 @@ const HomeContainer = () => {
     return (
       <ExtraButtonsWrapper>
         <Button
+          id="reset--button"
           handleClick={() => getCharacters(firstPage, 'all')}
           extendStyle={extendExtrsButtonStyle}
           text={'Reset'}
           loading={filter.all && showSearchingLoader}
         />
-        {showReccomendedButton && (
+        {reccomendedButtonState && (
           <Button
+            id="reccomend--button"
             handleClick={() => getReccomendedCharacters()}
             extendStyle={extendExtrsButtonStyle}
             text={'Reccomended'}
@@ -226,6 +229,7 @@ const HomeContainer = () => {
     return (
       <ShowMore>
         <Button
+          id="show-more--button"
           handleClick={() => showMore()}
           extendStyle={extendShowMoreButtonStyle}
           text={'Show more'}
