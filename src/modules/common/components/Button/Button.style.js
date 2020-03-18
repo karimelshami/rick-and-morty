@@ -5,6 +5,7 @@ export const CustomButton = styled.div`
   background-color: ${props => props.theme.secondary};
   border-color: ${props => props.theme.secondary};
   text-transform: uppercase;
+  text-align: center;
   cursor: pointer;
   height: 35px;
   color: ${props => props.theme.main};

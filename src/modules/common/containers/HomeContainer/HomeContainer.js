@@ -61,12 +61,14 @@ const HomeContainer = () => {
     character: state.common.character
   }))
   const [episodesModalState, setEpisodesModalState] = useState(false)
+  const [reccomendedButtonState, setReccomendedButtonState] = useState(false)
 
   /**------------------------------------------Application state------------------------------------------*/
 
   /**------------------------------------------Componant did mount------------------------------------------*/
   useEffect(() => {
     getCharacters(firstPage, 'all')
+    showReccomendedButton()
   }, [])
   /**------------------------------------------Componant did mount------------------------------------------*/
   /**------------------------------------------Componant logic------------------------------------------*/
@@ -78,8 +80,16 @@ const HomeContainer = () => {
     dispatch(commonActions.setCharacterName(value))
 
   const setFilter = type => {
-    let filter = { all: false, name: false, species: false }
-    dispatch(commonActions.setFilter({ ...filter, [type]: true }))
+    let falsyFilter = { all: false, name: false, species: false }
+    let prevoiusFilter = filter
+    let nextFilter = { ...falsyFilter, [type]: true }
+    if (JSON.stringify(prevoiusFilter) !== JSON.stringify(nextFilter))
+      clearAllCharacters()
+    dispatch(commonActions.setFilter(nextFilter))
+  }
+
+  const showReccomendedButton = () => {
+    if (Cookies.get('reccomended-species')) setReccomendedButtonState(true)
   }
 
   /**------------------------------------------Actions that make api calls------------------------------------------*/
@@ -96,7 +106,7 @@ const HomeContainer = () => {
       )
     } else if (filter === 'name') {
       if (filter.name) {
-        clearAllCharacters()
+        showReccomendedButton()
       }
       dispatch(
         commonActions.getCharacterByName({
@@ -105,7 +115,6 @@ const HomeContainer = () => {
         })
       )
     } else if (filter === 'all') {
-      clearAllCharacters()
       dispatch(commonActions.getAllCharacters(page))
     }
   }
@@ -113,7 +122,6 @@ const HomeContainer = () => {
   /**------------------------------------------Actions that make api calls------------------------------------------*/
   /**------------------------------------------Button Actions------------------------------------------*/
   const getReccomendedCharacters = () => {
-    clearAllCharacters()
     getCharacters(firstPage, 'species')
   }
 
@@ -129,10 +137,8 @@ const HomeContainer = () => {
     dispatch(commonActions.setPage(nextPage))
   }
   const search = () => {
-    clearAllCharacters()
     dispatch(commonActions.setPage(firstPage))
     getCharacters(firstPage, 'name')
-    setFilter('name')
   }
 
   const viewEpisodes = (episodes, charachterName) => {
@@ -195,7 +201,7 @@ const HomeContainer = () => {
 
   const renderModal = () => {
     let episodesList = []
-    
+
     if (episodes && episodes.results) {
       episodesList = episodes.results.map((episode, index) => {
         return (

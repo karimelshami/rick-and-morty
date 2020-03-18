@@ -2,16 +2,12 @@ import styled, { css } from 'styled-components'
 
 export const extendSearchButtonStyle = css`
   width: 30%;
-  text-align: center;
-  line-height: 40px;
   padding: 10px;
   margin: 0 10px;
 `
 
 export const extendExtrsButtonStyle = css`
   width: 50%;
-  text-align: center;
-  line-height: 40px;
   padding: 10px;
   margin: 0 10px;
 `
