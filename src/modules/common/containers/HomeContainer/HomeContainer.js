@@ -89,6 +89,7 @@ const HomeContainer = () => {
   }
 
   const showReccomendedButton = () => {
+    debugger
     if (Cookies.get('reccomended-species')) setReccomendedButtonState(true)
   }
 
@@ -106,7 +107,6 @@ const HomeContainer = () => {
       )
     } else if (filter === 'name') {
       if (filter.name) {
-        showReccomendedButton()
       }
       dispatch(
         commonActions.getCharacterByName({
@@ -114,6 +114,7 @@ const HomeContainer = () => {
           page: page
         })
       )
+      showReccomendedButton()
     } else if (filter === 'all') {
       dispatch(commonActions.getAllCharacters(page))
     }
@@ -192,15 +193,13 @@ const HomeContainer = () => {
           text={'Reset'}
           loading={filter.all && showSearchingLoader}
         />
-        {reccomendedButtonState && (
-          <Button
-            id="reccomend--button"
-            handleClick={() => getReccomendedCharacters()}
-            extendStyle={extendExtrsButtonStyle}
-            text={'Reccomended'}
-            loading={filter.species && showSearchingLoader}
-          />
-        )}
+        <Button
+          id="reccomend--button"
+          handleClick={() => getReccomendedCharacters()}
+          extendStyle={extendExtrsButtonStyle}
+          text={'Reccomended'}
+          loading={filter.species && showSearchingLoader}
+        />
       </ExtraButtonsWrapper>
     )
   }

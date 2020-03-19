@@ -1,13 +1,8 @@
 import configureMockStore from 'redux-mock-store';
-import { initialState } from 'redux/initialStates';
+import { initialState } from 'redux/initialState';
 
 
 var store = undefined;
-
-const initialState = {
-  initialState: initialState,
-
-};
 
 function configureStore(state = initialState) {
   if (store) return store;
