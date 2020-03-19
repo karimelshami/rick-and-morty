@@ -2,28 +2,26 @@ import React from 'react'
 import { render, fireEvent, cleanup } from '@testing-library/react'
 import HomeContainer from './HomeContainer'
 import { commonActionTypes, commonActions } from 'modules/common'
-import '@testing-library/jest-dom/extend-expect'
 import mockAxios from 'axios'
-import configureStore from 'app/redux/store';
-
+import configureStore from 'app/redux/store'
 const store = configureStore()
-
 const withReduxStore = ui => <Provider store={store}>{ui}</Provider>
 
 // to run the test cases run npm run test
 
 describe(' testing async actions', () => {
-  afterEach(() => {})
-  it('Cereates GET_ALL_CHARACTERS_SUCCESS when on api success', () => {
-    mockAxios.get('/getAllCharacters')
-    const expectedActions = [
-      { type: commonActionTypes.GET_ALL_CHARACTERS },
-      { type: commonActionTypes.GET_ALL_CHARACTERS_SUCCESS, body: {} }
-    ]
-    return store.dispatch(commonActions.getAllCharacters()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions)
-    })
-  })
+  afterAll(cleanup)
+
+  // it('Cereates GET_ALL_CHARACTERS_SUCCESS when on api success', () => {
+  //   mockAxios.get('/getAllCharacters')
+  //   const expectedActions = [
+  //     { type: commonActionTypes.GET_ALL_CHARACTERS },
+  //     { type: commonActionTypes.GET_ALL_CHARACTERS_SUCCESS, body: {} }
+  //   ]
+  //   return store.dispatch(commonActions.getAllCharacters()).then(() => {
+  //     expect(store.getActions()).toEqual(expectedActions)
+  //   })
+  // })
 })
 
 // describe('Home Container', () => {
