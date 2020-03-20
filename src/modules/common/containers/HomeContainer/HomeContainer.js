@@ -8,7 +8,7 @@ import Loader from 'modules/common/components/Loader'
 import Modal from 'modules/common/components/Modal'
 import CardsContainer from 'modules/common/components/CardsContainer'
 import NotFound from 'modules/common/components/NotFound'
-import { commonActions } from 'modules/common'
+import { commonActions , commonSagas } from 'modules/common'
 import { constants } from 'utils'
 import { staticText } from './HomeContainer.constants'
 import {
@@ -69,6 +69,7 @@ const HomeContainer = () => {
   useEffect(() => {
     getCharacters(firstPage, 'all')
     showReccomendedButton()
+    console.log(commonSagas)
   }, [])
   /**------------------------------------------Componant did mount------------------------------------------*/
   /**------------------------------------------Componant logic------------------------------------------*/
@@ -89,7 +90,6 @@ const HomeContainer = () => {
   }
 
   const showReccomendedButton = () => {
-    debugger
     if (Cookies.get('reccomended-species')) setReccomendedButtonState(true)
   }
 
@@ -119,7 +119,6 @@ const HomeContainer = () => {
       dispatch(commonActions.getAllCharacters(page))
     }
   }
-
   /**------------------------------------------Actions that make api calls------------------------------------------*/
   /**------------------------------------------Button Actions------------------------------------------*/
   const getReccomendedCharacters = () => {
@@ -173,7 +172,7 @@ const HomeContainer = () => {
           extendStyle={extendInputFieldStyle}
         />
         <Button
-          id="search--button"
+          data-testid="search--button"
           handleClick={() => search()}
           extendStyle={extendSearchButtonStyle}
           text={'Search'}
@@ -187,14 +186,14 @@ const HomeContainer = () => {
     return (
       <ExtraButtonsWrapper>
         <Button
-          id="reset--button"
+          data-testid="reset--button"
           handleClick={() => getCharacters(firstPage, 'all')}
           extendStyle={extendExtrsButtonStyle}
           text={'Reset'}
           loading={filter.all && showSearchingLoader}
         />
         <Button
-          id="reccomend--button"
+          data-testid="reccomend--button"
           handleClick={() => getReccomendedCharacters()}
           extendStyle={extendExtrsButtonStyle}
           text={'Reccomended'}
@@ -228,7 +227,7 @@ const HomeContainer = () => {
     return (
       <ShowMore>
         <Button
-          id="show-more--button"
+          data-testid="show-more--button"
           handleClick={() => showMore()}
           extendStyle={extendShowMoreButtonStyle}
           text={'Show more'}

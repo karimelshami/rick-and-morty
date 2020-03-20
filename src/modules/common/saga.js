@@ -2,7 +2,7 @@ import { takeLatest, call, put } from 'redux-saga/effects'
 import { commonActions, commonActionTypes, commonApi } from 'modules/common'
 import Cookies from 'js-cookie'
 
-function* getAllCharactersSaga(payload) {
+export function* getAllCharactersSaga(payload) {
   try {
     const response = yield call(commonApi.getAllCharacters, payload)
     yield put(commonActions.getAllCharactersSuccess(response.data))
@@ -11,7 +11,7 @@ function* getAllCharactersSaga(payload) {
   }
 }
 
-function* getCharacterByNameSaga(payload) {
+export function* getCharacterByNameSaga(payload) {
   try {
     const response = yield call(commonApi.getCharacterByName, payload)
     yield put(commonActions.getCharacterByNameSuccess(response.data))
@@ -24,7 +24,7 @@ function* getCharacterByNameSaga(payload) {
   }
 }
 
-function* getCharacterBySpeciesSaga(payload) {
+export function* getCharacterBySpeciesSaga(payload) {
   try {
     const response = yield call(commonApi.getCharacterBySpecies, payload)
     yield put(commonActions.getCharacterBySpeciesSuccess(response.data))
@@ -33,7 +33,7 @@ function* getCharacterBySpeciesSaga(payload) {
   }
 }
 
-function* getEpisodesByIdsSaga(payload) {
+export function* getEpisodesByIdsSaga(payload) {
   try {
     const response = yield call(commonApi.getEpisodesByIds, payload)
     let responseArray = response.data
