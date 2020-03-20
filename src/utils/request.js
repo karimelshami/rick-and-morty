@@ -1,14 +1,5 @@
 import axios from 'axios'
 
-//axios middleware to send constant headers
-// const api = axios.create({
-//     baseURL
-//     headers : {
-//       'Authorization' : 'auth',
-//       'Content-Type' : 'application/json'
-//   }
-//   });
-
 export const get = (url, params, headers) => {
   if (url) {
     const config = {

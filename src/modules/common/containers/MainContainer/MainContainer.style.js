@@ -1,9 +1,8 @@
-import styled, { css, createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const AppContainer = styled.div`
   width: 100%;
   height: 100%;
-
   box-sizing: content-box;
 `
 
@@ -14,7 +13,6 @@ export const GlobalStyle = createGlobalStyle`
   }
     body {
       background-color: #141414;
-  
     }
     
 `

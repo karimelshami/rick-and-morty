@@ -1,6 +1,7 @@
 import React from 'react'
 import Text from 'modules/common/components/Text'
 import Button from 'modules/common/components/Button'
+import PropTypes from 'prop-types'
 import {
   Img,
   Card,
@@ -34,11 +35,7 @@ const CustomCard = props => {
           mainText
           text={`${name} (${species} ) From`}
         />
-        <Text
-          extendStyle={extendTextStyle}
-          primaryText
-          text={` ${origin}  `}
-        />
+        <Text extendStyle={extendTextStyle} primaryText text={` ${origin}  `} />
         <Text
           extendStyle={extendTextStyle}
           primaryText
@@ -59,6 +56,15 @@ const CustomCard = props => {
     </Card>
   )
 }
-//TODO: PROPTYPES
+CustomCard.propTypes = {
+  img: PropTypes.string,
+  statusImg: PropTypes.string,
+  handleClick: PropTypes.func,
+  buttonText: PropTypes.string,
+  origin: PropTypes.string,
+  status: PropTypes.string,
+  gender: PropTypes.string,
+  species: PropTypes.string,
+  location: PropTypes.string
+}
 export default CustomCard
-

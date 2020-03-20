@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   ModalContainer,
   ModelActions,
@@ -23,7 +23,7 @@ const Modal = props => {
       <MainContainer>
         <Text primaryText text={title} />
         {content}
-        </MainContainer>
+      </MainContainer>
     </ModalContainer>
   )
 }

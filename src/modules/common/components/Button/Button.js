@@ -6,7 +6,11 @@ import PropTypes from 'prop-types'
 const Button = props => {
   const { extendStyle, text, handleClick, loading, ...restProps } = props
   return (
-    <CustomButton onClick={() => handleClick()} extendStyle={extendStyle} {...restProps}>
+    <CustomButton
+      onClick={() => handleClick()}
+      extendStyle={extendStyle}
+      {...restProps}
+    >
       {text}
       {loading && <Img src={Portal} alt="loading" />}
     </CustomButton>
