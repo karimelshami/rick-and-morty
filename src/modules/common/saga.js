@@ -12,6 +12,7 @@ export function* getAllCharactersSaga(payload) {
 }
 
 export function* getCharacterByNameSaga(payload) {
+  // TODO: correct reccomend spelling in all the project
   try {
     const response = yield call(commonApi.getCharacterByName, payload)
     yield put(commonActions.getCharacterByNameSuccess(response.data))

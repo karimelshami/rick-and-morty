@@ -14,6 +14,7 @@ const InputField = props => {
     placeholderFontStyle,
     placeholderPadding,
     height,
+    value,
     extendStyle
   } = props
   return (
@@ -29,6 +30,8 @@ const InputField = props => {
       margin={margin}
       height={height}
       extendStyle={extendStyle}
+      value={value}
+      data-testid ="input-field"
     />
   )
 }
@@ -42,6 +45,7 @@ InputField.propTypes = {
   placeholderFontStyle: PropTypes.string,
   placeholderPadding: PropTypes.string,
   height: PropTypes.string,
+  value: PropTypes.string,
   extendStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 }
 InputField.defaultProps = {

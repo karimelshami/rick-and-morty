@@ -163,12 +163,9 @@ const HomeContainer = () => {
     return (
       <Searchbar>
         <InputField
-          placeholder={
-            characterName
-              ? characterName
-              : 'Search by your favourite charachter'
-          }
+          placeholder={'Search by your favourite charachter'}
           handleChange={e => handleInputChange(e.target.value)}
+          value={characterName}
           extendStyle={extendInputFieldStyle}
         />
         <Button
