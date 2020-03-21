@@ -22,6 +22,7 @@ import {
   ExtraButtonsWrapper,
   extendExtrsButtonStyle
 } from './HomeContainer.style'
+import { setCharacterName } from 'modules/common/actions'
 
 const HomeContainer = () => {
   const dispatch = useDispatch()
@@ -57,7 +58,7 @@ const HomeContainer = () => {
       state.common.characters.info &&
       state.common.characters.info.pages,
     episodes: state.common.episodes,
-    filter: state.common.filter,
+    filter: state.common.filter
   }))
   const [episodesModalState, setEpisodesModalState] = useState(false) // to show modal
 
@@ -71,7 +72,10 @@ const HomeContainer = () => {
   /**------------------------------------------Componant logic------------------------------------------*/
   const clearAllCharacters = () => dispatch(commonActions.clearAllCharacters())
 
-  const toggleModalState = () => setEpisodesModalState(!episodesModalState)
+  const toggleModalState = type => {
+    setEpisodesModalState(!episodesModalState)
+    if (type === 'close') dispatch(commonActions.setCharacterName(''))
+  }
 
   const handleInputChange = value =>
     dispatch(commonActions.setCharacterName(value))
@@ -131,7 +135,7 @@ const HomeContainer = () => {
     }
     dispatch(commonActions.setPage(nextPage))
   }
-  
+
   const search = () => {
     clearAllCharacters()
     dispatch(commonActions.setPage(firstPage))
@@ -143,7 +147,6 @@ const HomeContainer = () => {
   }
 
   const viewEpisodes = (episodes, charachterName) => {
-    
     let episodeIds = []
     let episodeIdsString = ''
     for (let i = 0; i < episodes.length; i++) {
@@ -216,7 +219,7 @@ const HomeContainer = () => {
     return (
       <Modal
         title={`${characterName} Episodes`}
-        onClose={() => toggleModalState()}
+        onClose={() => toggleModalState('close')}
         content={episodesList}
       />
     )
