@@ -8,7 +8,7 @@ import Loader from 'modules/common/components/Loader'
 import Modal from 'modules/common/components/Modal'
 import CardsContainer from 'modules/common/components/CardsContainer'
 import NotFound from 'modules/common/components/NotFound'
-import { commonActions, commonSagas } from 'modules/common'
+import { commonActions } from 'modules/common'
 import { constants } from 'utils'
 import { staticText } from './HomeContainer.constants'
 import {
@@ -22,7 +22,6 @@ import {
   ExtraButtonsWrapper,
   extendExtrsButtonStyle
 } from './HomeContainer.style'
-import { setCharacterName } from 'modules/common/actions'
 
 const HomeContainer = () => {
   const dispatch = useDispatch()
@@ -38,7 +37,6 @@ const HomeContainer = () => {
     count,
     episodes,
     filter,
-    character,
     totalPages
   } = useSelector(state => ({
     characters: state.common.characters,
