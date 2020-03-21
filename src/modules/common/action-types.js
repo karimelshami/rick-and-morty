@@ -15,7 +15,6 @@ const commonActionTypes = {
   SET_PAGE: 'SET_PAGE',
   SET_CHARACTER_NAME: 'SET_CHARACTER_NAME',
   SET_FILTER :'SET_FILTER',
-  SET_CHARACTER :'SET_CHARACTER'
 }
 
 export default commonActionTypes

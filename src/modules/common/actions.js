@@ -108,9 +108,4 @@ export function setFilter(value) {
     payload: value
   }
 }
-export function setCharacter(value) {
-  return {
-    type: commonActionTypes.SET_FILTER,
-    payload: value
-  }
-}
+

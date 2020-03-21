@@ -1,6 +1,6 @@
 ## PROJECT RICK AND MORTY
 ## Requirements
-    For development, you will only need Node.js installed on your environement.
+For development, you will only need Node.js installed on your environement.
 ## Install
     $ git clone https://github.com/karimelshami/rick-and-morty
     $ cd rick-morty

@@ -8,7 +8,7 @@ import Loader from 'modules/common/components/Loader'
 import Modal from 'modules/common/components/Modal'
 import CardsContainer from 'modules/common/components/CardsContainer'
 import NotFound from 'modules/common/components/NotFound'
-import { commonActions , commonSagas } from 'modules/common'
+import { commonActions, commonSagas } from 'modules/common'
 import { constants } from 'utils'
 import { staticText } from './HomeContainer.constants'
 import {
@@ -58,18 +58,14 @@ const HomeContainer = () => {
       state.common.characters.info.pages,
     episodes: state.common.episodes,
     filter: state.common.filter,
-    character: state.common.character
   }))
   const [episodesModalState, setEpisodesModalState] = useState(false) // to show modal
-  const [reccomendedButtonState, setReccomendedButtonState] = useState(false) // to show reccomended button if the user has done his first search
 
   /**------------------------------------------Application state------------------------------------------*/
 
   /**------------------------------------------Componant did mount------------------------------------------*/
   useEffect(() => {
     getCharacters(firstPage, 'all')
-    showReccomendedButton()
-    console.log(commonSagas)
   }, [])
   /**------------------------------------------Componant did mount------------------------------------------*/
   /**------------------------------------------Componant logic------------------------------------------*/
@@ -89,16 +85,12 @@ const HomeContainer = () => {
     dispatch(commonActions.setFilter(nextFilter))
   }
 
-  const showReccomendedButton = () => {
-    if (Cookies.get('reccomended-species')) setReccomendedButtonState(true)
-  }
-
   /**------------------------------------------Actions that make api calls------------------------------------------*/
 
   const getCharacters = (page, filter) => {
     setFilter(filter)
     if (filter === 'species') {
-      let species = Cookies.get('reccomended-species')
+      let species = Cookies.get('recommended-species')
       dispatch(
         commonActions.getCharacterBySpecies({
           species: species,
@@ -114,15 +106,18 @@ const HomeContainer = () => {
           page: page
         })
       )
-      showReccomendedButton()
     } else if (filter === 'all') {
       dispatch(commonActions.getAllCharacters(page))
     }
   }
   /**------------------------------------------Actions that make api calls------------------------------------------*/
   /**------------------------------------------Button Actions------------------------------------------*/
-  const getReccomendedCharacters = () => {
-    getCharacters(firstPage, 'species')
+  const getRecommendedCharacters = () => {
+    if (!Cookies.get('recommended-species')) {
+      clearAllCharacters()
+    } else {
+      getCharacters(firstPage, 'species')
+    }
   }
 
   const showMore = () => {
@@ -136,13 +131,19 @@ const HomeContainer = () => {
     }
     dispatch(commonActions.setPage(nextPage))
   }
+  
   const search = () => {
     clearAllCharacters()
     dispatch(commonActions.setPage(firstPage))
     getCharacters(firstPage, 'name')
   }
 
+  const searchOnKeyPress = key => {
+    if (key === 'Enter') search()
+  }
+
   const viewEpisodes = (episodes, charachterName) => {
+    
     let episodeIds = []
     let episodeIdsString = ''
     for (let i = 0; i < episodes.length; i++) {
@@ -150,7 +151,7 @@ const HomeContainer = () => {
       episodeIds.push(episodes[i].replace(staticText.episodeApiURL, ''))
     }
     episodeIdsString = episodeIds.toString()
-    dispatch(commonActions.setCharacter(charachterName))
+    dispatch(commonActions.setCharacterName(charachterName))
     dispatch(commonActions.getEpisodes(episodeIdsString))
     toggleModalState()
   }
@@ -163,10 +164,11 @@ const HomeContainer = () => {
     return (
       <Searchbar>
         <InputField
-          placeholder={'Search by your favourite charachter'}
+          placeholder={staticText.searchText}
           handleChange={e => handleInputChange(e.target.value)}
           value={characterName}
           extendStyle={extendInputFieldStyle}
+          onKeyPress={e => searchOnKeyPress(e.key)}
         />
         <Button
           data-testid="search--button"
@@ -191,9 +193,9 @@ const HomeContainer = () => {
         />
         <Button
           data-testid="reccomend--button"
-          handleClick={() => getReccomendedCharacters()}
+          handleClick={() => getRecommendedCharacters()}
           extendStyle={extendExtrsButtonStyle}
-          text={'Reccomended'}
+          text={'Recommended'}
           loading={filter.species && showSearchingLoader}
         />
       </ExtraButtonsWrapper>
@@ -213,7 +215,7 @@ const HomeContainer = () => {
     }
     return (
       <Modal
-        title={`${character} Episodes`}
+        title={`${characterName} Episodes`}
         onClose={() => toggleModalState()}
         content={episodesList}
       />
@@ -234,7 +236,12 @@ const HomeContainer = () => {
   }
 
   const renderCharacters = () => {
-    if (characters && characters.results && !showLoader) {
+    if (
+      characters &&
+      characters.results &&
+      characters.results.length &&
+      !showLoader
+    ) {
       return (
         <CardsContainer
           characters={characters}

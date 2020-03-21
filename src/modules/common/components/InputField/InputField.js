@@ -15,7 +15,8 @@ const InputField = props => {
     placeholderPadding,
     height,
     value,
-    extendStyle
+    extendStyle,
+    onKeyPress
   } = props
   return (
     <Input
@@ -31,13 +32,15 @@ const InputField = props => {
       height={height}
       extendStyle={extendStyle}
       value={value}
-      data-testid ="input-field"
+      data-testid="input-field"
+      onKeyPress={e => onKeyPress(e)}
     />
   )
 }
 
 InputField.propTypes = {
   handleChange: PropTypes.func,
+  onKeyPress: PropTypes.func,
   type: PropTypes.string,
   placeholder: PropTypes.string,
   fontSize: PropTypes.string,

@@ -12,5 +12,4 @@ export const initialState = {
     results: []
   },
   filter: { all: true, species: false, name: false },
-  character: ''
 }

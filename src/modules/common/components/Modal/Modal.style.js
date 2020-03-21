@@ -12,6 +12,7 @@ export const ModalContainer = styled.div`
   right: 0;
   left: 0;
   margin: auto;
+  height:unset;
   z-index: 999;
   -webkit-box-shadow: 10px 10px 18px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 18px 0px rgba(0, 0, 0, 0.75);
@@ -20,7 +21,7 @@ export const ModalContainer = styled.div`
   width: 70%;
   `}
   ${props => props.theme.media.phone`
-  width: 90%;
+  width: 80%;
   `}
 `
 export const ModelActions = styled.div`

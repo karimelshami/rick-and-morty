@@ -16,9 +16,9 @@ export function* getCharacterByNameSaga(payload) {
   try {
     const response = yield call(commonApi.getCharacterByName, payload)
     yield put(commonActions.getCharacterByNameSuccess(response.data))
-    if (!Cookies.get('reccomended-species')) {
+    if (!Cookies.get('recommended-species')) {
       let species = response.data.results[0].species
-      Cookies.set('reccomended-species', species)
+      Cookies.set('recommended-species', species)
     }
   } catch (error) {
     yield put(commonActions.getCharacterByNameFail())
