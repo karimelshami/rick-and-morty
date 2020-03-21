@@ -41,7 +41,6 @@ export const Card = styled.div`
   border-radius: 5px;
   width: 23%;
   margin: 1%;
-  height: 700px;
   ${props => props.theme.media.tablet`
   width: 45%;
   height: unset;
